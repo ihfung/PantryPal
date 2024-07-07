@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "local": "nodemon server.js"
+    "local": "nodemon server.js",
+    "db:reset": "psql -U labber -d finalterm < ./db/schema/create.sql && psql -U labber -d finalterm < ./db/schema/development.sql"
   },
   "keywords": [],
   "author": "",

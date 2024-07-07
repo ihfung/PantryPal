@@ -21,6 +21,7 @@ app.get('/api/data', async (req, res) => {
   }
 });
 
+    
 app.get('/api/test/db', async (req, res) => {
   try {
     const client = await db.connect(); // Try to connect to the database
