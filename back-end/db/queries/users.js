@@ -1,9 +1,9 @@
 const db = require('../connection');
 
 //add new user
-const addUser = function(username, email, password) {
+const addUser = function(newUser) {
   return db.query(
-    'INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *;', [username, email, password])
+    'INSERT INTO users (username, email, password, profile_pic, bio ) VALUES ($1, $2, $3, $4, $5) RETURNING *;', [newUser.username, newUser.email, newUser.password, newUser.profile_pic, newUser.bio])
     .then(data => {
       return data.rows[0];
     }).catch((err) => {

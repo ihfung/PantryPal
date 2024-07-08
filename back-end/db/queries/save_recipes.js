@@ -11,7 +11,6 @@ const addSaveRecipe = function(user_id, recipe_id) {
     });
 };
 
-//
 
 //remove saved recipe
 const removeSaveRecipe = function(user_id, recipe_id) {
