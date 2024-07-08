@@ -14,7 +14,5 @@ psql
 
 For database reset run the following command:
 >npm run db:reset
-or 
->http://localhost:8080/api/debug/reset
 
 psql -U labbers -d finalterm
