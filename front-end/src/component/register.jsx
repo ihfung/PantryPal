@@ -8,6 +8,7 @@ import { MdEmail } from "react-icons/md";
 const RegisterForm = () =>{
   return (
     <div className="wrapper">
+       <div className="form-container">
       <form action = "">
         <h1>Register</h1>
         <div className="input-box">
@@ -23,7 +24,9 @@ const RegisterForm = () =>{
           <RiLockPasswordFill className="icon"/>
         </div>
         <button type ="submit">Register</button>
+        
       </form>
+      </div>
     </div>
   );
 }

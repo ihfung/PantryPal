@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 const LoginForm = () =>{
   return (
     <div className="wrapper">
+     <div className="form-container">
       <form action = "">
         <h1>Login</h1>
         <div className="input-box">
@@ -23,6 +24,7 @@ const LoginForm = () =>{
         <p>Don't have an account? <Link to="/register">Register</Link></p>
         </div>
       </form>
+      </div>
     </div>
   );
 }
