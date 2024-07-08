@@ -1,37 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginForm from './component/login';
+import RegisterForm from './component/register';
 
 const App = () => {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    // Function to fetch data from backend API
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/data');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setUsers(data); // Update state with fetched data
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData(); // Call the fetch function
-  }, []); // Empty dependency array means it runs once on component mount
-
+ 
   return (
-    <div>
-      <h1>User Data</h1>
-      <ul>
-        {users.map((user) => (
-          <li key={user.user_id}>
-            {user.username} - {user.email}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm />} />
+        {/* Add more routes as needed */}
+      </Routes>
+    </Router>
   );
 };
 
