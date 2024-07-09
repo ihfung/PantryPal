@@ -4,8 +4,12 @@ import ImproveSkill from "./improveskills";
 import QouteSection from "./qoutesection";
 import '../style/navbar.scss';
 import '../style/home.scss';
+import '../style/footer.scss';
 import { GiHamburgerMenu } from "react-icons/gi";
 import Summery from "./summery";
+import ChiefsSection from "./chiefsSection";
+import Footer from "./footer";
+
 
 
 
@@ -23,7 +27,9 @@ const Home = () =>{
        <Summery />
        <ImproveSkill/>
        <QouteSection />
+       <ChiefsSection />
       </div>
+      <Footer />
     </div>
   
   );
