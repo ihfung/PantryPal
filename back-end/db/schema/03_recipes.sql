@@ -7,6 +7,7 @@ CREATE TABLE recipes (
     description TEXT NOT NULL,
     ingredients TEXT NOT NULL,
     directions TEXT NOT NULL,
+    img TEXT,
     category_id INTEGER REFERENCES categories(category_id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
