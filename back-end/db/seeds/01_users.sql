@@ -1,4 +1,12 @@
 INSERT INTO users (username, email, password, profile_pic, bio, created_at, updated_at)
 VALUES 
-('john_doe', 'john@example.com', 'password123', 'path/to/profile_pic.jpg', 'Love cooking!', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-('jane_smith', 'jane@example.com', 'password456', 'path/to/profile_pic2.jpg', 'Baking enthusiast.', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+('john_doe', 'john@example.com', 'password123', 'https://unsplash.com/photos/a-man-wearing-glasses-and-a-plaid-shirt-tB5ZZtHZ_tI', 'Love cooking!', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('jane_smith', 'jane@example.com', 'password456', 'https://unsplash.com/photos/a-man-in-a-yellow-shirt-smiling-at-the-camera-ZjDbRtR_BcE', 'Baking enthusiast.', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('mike_lee', 'mike@example.com', 'password789', 'https://img.freepik.com/free-photo/young-man-worried-expression_1194-1619.jpg?size=626&ext=jpg', 'Home cook with a passion for Italian cuisine.', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('emily_clark', 'emily@example.com', 'password012', 'https://img.freepik.com/free-photo/front-view-smiley-woman-with-earbuds_23-2148613052.jpg?size=626&ext=jpg', 'Vegan food blogger.', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('samuel_green', 'samuel@example.com', 'password345', 'https://img.freepik.com/premium-photo/portrait-young-man_1048944-24360939.jpg?size=626&ext=jpg', 'Grill master and BBQ enthusiast.', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('olivia_jones', 'olivia@example.com', 'password678', 'https://img.freepik.com/free-photo/portrait-beautiful-smiling-model-dressed-summer-clothes-trendy-girl-posing-street-funny-positive-woman-having-fun_158538-6285.jpg?size=626&ext=jpg', 'Dessert lover and cake decorator.', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('liam_wilson', 'liam@example.com', 'password901', 'https://img.freepik.com/premium-photo/portrait-man-with-blonde-hair-relaxing-outdoors_251136-63979.jpg?size=626&ext=jpg', 'Professional chef specializing in French cuisine.', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('sophia_kim', 'sophia@example.com', 'password234', 'https://img.freepik.com/free-photo/selfie-portrait-videocall_23-2149186104.jpg?size=626&ext=jpg', 'Food photographer and stylist.', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('noah_martin', 'noah@example.com', 'password567', 'https://img.freepik.com/premium-photo/young-handsome-unshaven-guy-close-up-face-portrait-spring-field-background-with-green-grass_118478-241.jpg?size=626&ext=jpg', 'Recipe developer and food writer.', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('isabella_brown', 'isabella@example.com', 'password890', 'https://img.freepik.com/premium-photo/happy-woman-front-information-board-train-station-looking-camera_201606-16327.jpg?size=626&ext=jpg&ga=GA1.1.1468915539.1720534080&semt=ais_hybrid', 'Healthy eating advocate.', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
