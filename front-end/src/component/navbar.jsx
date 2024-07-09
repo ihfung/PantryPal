@@ -5,7 +5,9 @@ import cooklogo from '../Assets/cook.png';
 
 const NavBar = ({show, isLoggedIn }) =>{
   return (
+    
    <div className={show ? "sidenav active" : "sidenav"}>
+    
     <img src ={cooklogo} alt = 'logo' className="logo"/>
     <ul>
         <li><a href="/">Home</a></li>
