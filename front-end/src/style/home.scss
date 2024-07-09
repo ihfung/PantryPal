@@ -175,3 +175,96 @@ img{
       margin-top: 1em;
   }
 }
+
+
+
+.section.chiefs {
+  display: block;
+}
+
+.top-chiefs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: 1.5em;
+  margin-top: 3em;
+}
+
+.chief-card {
+  display: flex;
+  height: 120px;
+  background-color: var(--background-color);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: transform 0.3s ease; /* Add transition for smooth animation */
+}
+
+.chief-card:hover {
+  transform: scale(1.05); /* Scale up the card slightly on hover */
+}
+
+.chief-card img {
+  height: 100%;
+  width: 120px;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px var(--shadow-color);
+  transition: transform 0.3s ease; /* Add transition for smooth animation */
+}
+
+.chief-card:hover img {
+  transform: scale(1.1); /* Scale up the image slightly on hover */
+}
+
+.chief-card-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-top: 0.5em;
+}
+
+.chief-card-name {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.chief-recipe-count,
+.chief-cuisine {
+  font-size: 1.2em;
+  color: var(--text-light);
+}
+
+.chief-icons {
+  font-size: 1.2em;
+}
+
+.chief-icons svg {
+  margin-right: 0.5em;
+  transition: color 0.3s ease; /* Add transition for smooth color change */
+}
+
+.chief-icons svg:nth-child(1) {
+  color: #0063f7;
+}
+
+.chief-icons svg:nth-child(2) {
+  color: #13b4ff;
+}
+
+.chief-icons svg:nth-child(3) {
+  color: #ff0056;
+}
+
+.chief-card:hover .chief-icons svg:nth-child(1) {
+  color: #004bb5; /* Change color on hover */
+}
+
+.chief-card:hover .chief-icons svg:nth-child(2) {
+  color: #0f9edb; /* Change color on hover */
+}
+
+.chief-card:hover .chief-icons svg:nth-child(3) {
+  color: #cc0042; /* Change color on hover */
+}
