@@ -89,4 +89,4 @@ const searchRecipes = function(query) {
     });
 };
 
-module.exports = { addRecipe, getRecipe, getRecipeById, getAllRecipes, getRecipesByUserId, editRecipe, deleteRecipe, searchRecipes,filterRecipesByCategory };
+module.exports = { addRecipe, getRecipeById, getAllRecipes, getRecipesByUserId, editRecipe, deleteRecipe, searchRecipes,filterRecipesByCategory };
