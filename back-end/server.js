@@ -48,20 +48,7 @@ app.get('/api/data', async (req, res) => {
   }
 });
 
-//reset the database to the original state
-app.get("/api/debug/reset", async (req, res) => {
-  try {
-    const data = await read(path.join(__dirname, "./db/schema/create.sql"));
-    await db.query(data);
-    const data2 = await read(path.join(__dirname, "./db/schema/development.sql"));
-    await db.query(data2);
-    res.send("Database reset");
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("Server error");
-  }
 
-});
 
 app.get('/api/test/db', async (req, res) => {
   app.use(express.static(path.join(__dirname, 'public')));
