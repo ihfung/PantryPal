@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db/connection');
 const userQueries = require('../db/queries/recipe');
+const multer = require('multer');
+const path = require('path');
 
 
 //get recipes from database
@@ -31,10 +33,9 @@ router.get('/search', async (req, res) => {
 
 
 //add new recipe
-router.get('/add_recipe', (req, res) => {
-  res.render('add_recipe', {user: req.session.userId}); 
+router.get('/add_recipes', (req, res) => {
+  res.render('add_recipes', {user: req.session.userId});
 });
-
 
 router.post('/add',  (req, res) => {
   const userId = req.session.userId;
@@ -42,7 +43,13 @@ router.post('/add',  (req, res) => {
   if (!userId) {
     return res.send({ error: "error" });
   }
-  const newRecipe = req.body;
+  const newRecipe = {
+    name: req.body.name,
+    ingredients: req.body.ingredients,
+    description: req.body.description,
+    user_id: userId,
+    img: req.body.img
+  }
   newRecipe.user_id = userId;
 
   userQueries.addRecipe(newRecipe)
