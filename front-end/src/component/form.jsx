@@ -79,13 +79,6 @@ export default function Form() {
           value={recipe.directions}
           onChange={handleInputChange}
         ></textarea>
-      </div><div className="form-group">
-        <label>Directions</label>
-        <textarea
-          name="Directions"
-          value={recipe.directions}
-          onChange={handleInputChange}
-        ></textarea>
       </div>
       <div className="form-group">
         <label>Description</label>
