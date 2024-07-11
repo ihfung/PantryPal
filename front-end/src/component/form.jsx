@@ -7,6 +7,7 @@ export default function Form() {
     title: '',
     ingredients: '',
     description: '',
+    directions: '',
     image: null
   });
   const [error, setError] = useState('');
@@ -26,7 +27,7 @@ export default function Form() {
     // Handle form submission
     console.log(recipe);
     try {
-      const response = await fetch('/add_recipes', {
+      const response = await fetch('/recipes/add_recipes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -68,6 +69,14 @@ export default function Form() {
         <textarea
           name="ingredients"
           value={recipe.ingredients}
+          onChange={handleInputChange}
+        ></textarea>
+      </div>
+      <div className="form-group">
+        <label>Directions</label>
+        <textarea
+          name="directions"
+          value={recipe.directions}
           onChange={handleInputChange}
         ></textarea>
       </div>

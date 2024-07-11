@@ -36,17 +36,16 @@ router.get('/add_recipes', (req, res) => {
 
 router.post('/add_recipes',  (req, res) => {
   const userId = req.session.userId;
- 
+  console.log(userId);
   if (!userId) {
-    return res.send({ error: "error" });
+    return res.status(400).send({ error: "error" });
   }
   const {title, ingredients, description, directions, image} = req.body;
   
   
-  userQueries.addRecipe({title,  ingredients, description,directions, image, userId})
+  userQueries.addRecipe({title, description,ingredients,directions, image, userId})
     .then((recipe) => {
       res.send({
-        id: recipe.id,
         title: recipe.title,
         ingredients: recipe.ingredients,
         description: recipe.description,

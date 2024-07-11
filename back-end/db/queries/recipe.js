@@ -4,7 +4,7 @@ const db = require('../connection');
 const addRecipe = function(newRecipe) {
   return db.query(
     `INSERT INTO recipes (title, description, ingredients, directions, user_id, img) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`,
-    [newRecipe.title, newRecipe.description, newRecipe.ingredients, newRecipe.directions, newRecipe.user_id, newRecipe.img]
+    [newRecipe.title, newRecipe.description, newRecipe.ingredients, newRecipe.directions, newRecipe.userId, newRecipe.image]
   )
     .then(data => {
       return data.rows[0];
