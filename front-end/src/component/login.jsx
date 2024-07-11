@@ -6,7 +6,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 
 
-const LoginForm = () =>{
+const LoginForm = ({onLogin}) =>{
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -27,6 +27,7 @@ const LoginForm = () =>{
       const data = await response.json();
         console.log(data);
       if (response.ok) {
+       onLogin(data);
         // Redirect or handle success as needed
         navigate('/recipes');
         console.log('Login successful');
