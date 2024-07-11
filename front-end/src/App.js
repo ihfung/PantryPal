@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import NavBar from './component/navbar';
 import LoginForm from './component/login';
 import RegisterForm from './component/register';
@@ -18,7 +18,8 @@ axios.defaults.baseURL = 'http://localhost:3000';
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null);
-  const [showNav, setShowNav] = useState(false) 
+  const [showNav, setShowNav] = useState(false);
+  
 
   useEffect(() => {
     const storedUserId = localStorage.getItem('userId');
@@ -36,6 +37,11 @@ const App = () => {
     setIsLoggedIn(true);
    localStorage.setItem('userId', user.id); 
   };
+  const handleLogout = () => {
+    setUserId(null);
+    setIsLoggedIn(false);
+    localStorage.removeItem('userId');
+  };
   return (
     <Router>
         <header>
@@ -43,7 +49,7 @@ const App = () => {
         <a href="/" className="logo"> Pantry<span>Pal</span>
         </a>
       </header>
-      <NavBar show={showNav} isLoggedIn={isLoggedIn} />
+      <NavBar show={showNav} isLoggedIn={isLoggedIn} onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recipes" element={<Recipes />} />
@@ -51,9 +57,7 @@ const App = () => {
         <Route path="/my_recipes" element={<MyRecipes userId={userId} />}/>
         <Route path="/view_recipes" element={<ViewRecipes />} />
         <Route path="/saved_recipes" element={<SavedRecipes />} />
-        <Route
-          path="/login"
-          element={<LoginForm onLogin={handleLogin} />}
+        <Route path="/login"element={<LoginForm onLogin={handleLogin} />}
         />
         <Route path="/register" element={<RegisterForm />} />
        
