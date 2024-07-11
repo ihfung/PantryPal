@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './component/navbar';
@@ -19,12 +19,22 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null);
   const [showNav, setShowNav] = useState(false) 
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setUserId(storedUserId);
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   const handleLogin = (user) => {
    console.log("login as user");
     setUserId(user.id);
+    console.log(user.id, "user.id inside handlelogin",user, "user is from app"); 
+    
     setIsLoggedIn(true);
-   
-    localStorage.setItem('userId', user.id); 
+   localStorage.setItem('userId', user.id); 
   };
   return (
     <Router>
