@@ -1,4 +1,4 @@
-DROP TABLE likes;
+DROP TABLE IF EXISTS likes;
 
 CREATE TABLE likes (
     like_id SERIAL PRIMARY KEY,

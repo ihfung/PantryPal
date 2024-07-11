@@ -1,4 +1,4 @@
-DROP TABLE recipe_category;
+DROP TABLE IF EXISTS recipe_category;
 
 CREATE TABLE recipe_category (
     recipe_category_id SERIAL PRIMARY KEY,

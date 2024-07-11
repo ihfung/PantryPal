@@ -104,7 +104,7 @@ router.post('/:id/delete', (req, res) => {
     });
 });
 
-// Retrieve an item from database
+// Retrieve an recipe from database
 router.get('/:id', async (req, res) => {
   const recipeId = req.params.id;
   const userId = req.session.userId;

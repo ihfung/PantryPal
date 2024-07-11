@@ -1,4 +1,4 @@
-DROP TABLE save_recipe;
+DROP TABLE IF EXISTS save_recipe;
 
 CREATE TABLE save_recipe (
     save_id SERIAL PRIMARY KEY,
