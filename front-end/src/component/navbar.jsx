@@ -1,10 +1,16 @@
 import React from "react";
 import '../style/navbar.scss';
 import cooklogo from '../Assets/cook.png';
+import { useNavigate } from 'react-router-dom';
 
 
-const NavBar = ({show, isLoggedIn }) =>{
-  console.log("is logged in ",isLoggedIn);
+const NavBar = ({show, isLoggedIn, onLogout }) =>{
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    onLogout();
+    navigate('/');
+  };
   return (
     
    <div className={show ? "sidenav active" : "sidenav"}>
@@ -20,7 +26,7 @@ const NavBar = ({show, isLoggedIn }) =>{
             <li><a href="/add_recipes">Add Recipe</a></li>
             <li><a href="/saved_recipes">Saved</a></li>
             <li><a href="#!">Categries</a></li>
-            <li><a href="#!">Logout</a></li>
+            <li><a href="/" onClick={handleLogoutClick}>Logout</a></li>
           </>
         ) : (
           <>
