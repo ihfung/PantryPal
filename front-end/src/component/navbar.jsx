@@ -4,6 +4,7 @@ import cooklogo from '../Assets/cook.png';
 
 
 const NavBar = ({show, isLoggedIn }) =>{
+  console.log("is logged in ",isLoggedIn);
   return (
     
    <div className={show ? "sidenav active" : "sidenav"}>
@@ -18,7 +19,7 @@ const NavBar = ({show, isLoggedIn }) =>{
             <li><a href="/add_recipes">Add Recipe</a></li>
             <li><a href="/saved_recipes">Saved</a></li>
             <li><a href="#!">Categries</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li><a href="#!">Logout</a></li>
           </>
         ) : (
           <>

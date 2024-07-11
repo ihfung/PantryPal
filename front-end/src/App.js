@@ -10,25 +10,30 @@ import AddRecipes from './pages/add_recipes';
 import SavedRecipes from './pages/saved_recipes';
 import MyRecipes from './pages/my_recipes';
 import ViewRecipes from './pages/view_recipe';
+import { GiHamburgerMenu } from "react-icons/gi";
 
 axios.defaults.baseURL = 'http://localhost:3000';
 
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userId, setUserId] = useState(null); // State to hold the user ID
-
-  // Example function to set user ID after login
+  const [userId, setUserId] = useState(null);
+  const [showNav, setShowNav] = useState(false) 
   const handleLogin = (user) => {
-    // Assuming user object contains user ID after successful login
+   console.log("login as user");
     setUserId(user.id);
     setIsLoggedIn(true);
-    // Optionally, store user details in local storage or session storage
-    localStorage.setItem('userId', user.id); // Example: Store in local storage
+   
+    localStorage.setItem('userId', user.id); 
   };
   return (
     <Router>
-       <NavBar isLoggedIn={isLoggedIn} /> 
+        <header>
+        <GiHamburgerMenu onClick={() => setShowNav(!showNav)} />
+        <a href="/" className="logo"> Pantry<span>Pal</span>
+        </a>
+      </header>
+      <NavBar show={showNav} isLoggedIn={isLoggedIn} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recipes" element={<Recipes />} />

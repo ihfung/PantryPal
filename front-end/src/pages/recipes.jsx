@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
+
 import NavBar from "../component/navbar";
 import Footer from "../component/footer";
 import Search from "../component/search";
@@ -9,7 +9,7 @@ import '../style/footer.scss';
 import '../style/recipes.scss';
 
 const Recipes = ({userId}) =>{
-  const [showNav, setShowNav] = useState(false)
+ 
   const [recipes, setRecipes] = useState([]);
 
 
@@ -36,12 +36,7 @@ const fetchRecipes = async (query = '') => {
       }
   return (
     <div className="content">
-      <header>
-        <GiHamburgerMenu onClick={() => setShowNav(!showNav)} />
-        <a href="/" className="logo"> Pantry<span>Pal</span>
-        </a>
-      </header>
-      <NavBar show={showNav} />
+    
       <div className="main">
       <Search onSearch={handleSearch} />
         <div className="recipes-container">

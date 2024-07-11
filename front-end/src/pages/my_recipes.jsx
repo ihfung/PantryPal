@@ -39,11 +39,7 @@ const MyRecipes = () =>{
   return (
 
     <div className="content">
-      <header>
-        <GiHamburgerMenu  onClick={() => setShowNav(!showNav)}/>
-        <a href ="#!" className="logo" >Pantry<span>Pal</span></a>
-      </header>
-      <NavBar show ={showNav} /> 
+     
       <div className="main">
       <div className="recipes-container">
                 {/* <RecipeCard /> */}
