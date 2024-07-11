@@ -1,6 +1,4 @@
 import {useState, useEffect} from "react";
-
-import NavBar from "../component/navbar";
 import Footer from "../component/footer";
 import Search from "../component/search";
 import RecipeCard from "../component/recipeCard";

@@ -27,6 +27,7 @@ const LoginForm = ({onLogin}) =>{
       const data = await response.json();
         console.log(data);
       if (response.ok) {
+        // console.log();
        onLogin(data);
         // Redirect or handle success as needed
         navigate('/recipes');
