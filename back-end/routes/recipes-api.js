@@ -36,7 +36,7 @@ router.get('/add_recipes', (req, res) => {
 
 router.post('/add_recipes',  (req, res) => {
   const userId = req.session.userId;
-  console.log(userId);
+  
   if (!userId) {
     return res.status(400).send({ error: "error" });
   }
