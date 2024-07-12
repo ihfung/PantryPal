@@ -1,12 +1,11 @@
-
 .main{
   padding-inline: 16vw;
- 
 }
+
 .section{
   display: flex;
   align-items: center;
-  padding-top: 30px; /* Add padding to the top of each section */
+  padding-top: 30px; 
   padding-bottom: 50px; 
   .title{
     color: var(--text-color);
@@ -30,17 +29,72 @@
   .typograpy{
     padding-right: 1em;
   }
-  .gallery{
+  .gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.75vw;
+    gap: 1.50vw;
+    margin-top: 2rem; 
+  }
+  .gallery img {
+    width: 100%;
+    height: 125px;
+    border-radius: 5px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    //transition: transform 0.3s ease-in-out; 
+    opacity: 1; 
+    animation: popOut 0.4s forwards;
+  }
+
+  .gallery img:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  
+  .gallery img:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  
+  .gallery img:nth-child(6) {
+    animation-delay: 0.3s;
+  }
+  
+  .gallery img:nth-child(9) {
+    animation-delay: 0.4s;
+  }
+  
+  .gallery img:nth-child(8) {
+    animation-delay: 0.5s;
+  }
+  
+  .gallery img:nth-child(7) {
+    animation-delay: 0.6s;
+  }
+  
+  .gallery img:nth-child(4) {
+    animation-delay: 0.7s;
+  }
+  
+  .gallery img:nth-child(5) {
+    animation-delay: 0.8s;
+  }
+  
+  
+  @keyframes popOut {
+    from {
+      transform: scale(0);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
 }
 
 
-
 .custom-image {
   background-color: red;
+  object-fit: cover;
+  width: 100%;
   border-radius: 3px;
   overflow: hidden;
   height: auto; 
@@ -48,51 +102,10 @@
   position: relative;
   transform: scale(1); 
   opacity: 1; 
-  animation: popOut 0.3s forwards;
+ // animation: popOut 0.3s forwards;
 }
 
-.custom-image:nth-child(2) {
-  animation-delay: 0.1s;
-}
 
-.custom-image:nth-child(3) {
-  animation-delay: 0.2s;
-}
-
-.custom-image:nth-child(6) {
-  animation-delay: 0.3s;
-}
-
-.custom-image:nth-child(9) {
-  animation-delay: 0.4s;
-}
-
-.custom-image:nth-child(8) {
-  animation-delay: 0.5s;
-}
-
-.custom-image:nth-child(7) {
-  animation-delay: 0.6s;
-}
-
-.custom-image:nth-child(4) {
-  animation-delay: 0.7s;
-}
-
-.custom-image:nth-child(5) {
-  animation-delay: 0.8s;
-}
-
-@keyframes popOut {
-  from {
-    transform: scale(0);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
 
 .btn{
   border: none;
@@ -179,7 +192,6 @@ img{
 }
 
 
-
 .section.chiefs {
   display: block;
 }
@@ -197,11 +209,11 @@ img{
   background-color: var(--background-color);
   border-radius: 5px;
   overflow: hidden;
-  transition: transform 0.3s ease; /* Add transition for smooth animation */
+  transition: transform 0.3s ease;
 }
 
 .chief-card:hover {
-  transform: scale(1.05); /* Scale up the card slightly on hover */
+  transform: scale(1.05);
 }
 
 .chief-card img {
@@ -209,11 +221,11 @@ img{
   width: 120px;
   border-radius: 5px;
   box-shadow: 0 3px 6px var(--shadow-color);
-  transition: transform 0.3s ease; /* Add transition for smooth animation */
+  transition: transform 0.3s ease;
 }
 
 .chief-card:hover img {
-  transform: scale(1.1); /* Scale up the image slightly on hover */
+  transform: scale(1.1); 
 }
 
 .chief-card-info {
@@ -244,7 +256,7 @@ img{
 
 .chief-icons svg {
   margin-right: 0.5em;
-  transition: color 0.3s ease; /* Add transition for smooth color change */
+  transition: color 0.3s ease;
 }
 
 .chief-icons svg:nth-child(1) {
@@ -260,13 +272,13 @@ img{
 }
 
 .chief-card:hover .chief-icons svg:nth-child(1) {
-  color: #004bb5; /* Change color on hover */
+  color: #004bb5;
 }
 
 .chief-card:hover .chief-icons svg:nth-child(2) {
-  color: #0f9edb; /* Change color on hover */
+  color: #0f9edb;
 }
 
 .chief-card:hover .chief-icons svg:nth-child(3) {
-  color: #cc0042; /* Change color on hover */
+  color: #cc0042;
 }

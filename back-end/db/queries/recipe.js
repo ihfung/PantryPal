@@ -14,7 +14,7 @@ const addRecipe = function(newRecipe) {
     });
 };
 
-// get recipe by id
+// get recipes by id
 const getRecipeById = function(id) {
   return db.query(
     'SELECT * FROM recipes WHERE id = $1;', [id])
@@ -113,7 +113,9 @@ const getRecipesWithUserProfiles = function() {
   return db.query(
     `SELECT recipes.title, recipes.description, recipes.img, users.profile_pic as profile_pic
      FROM recipes 
-     JOIN users ON recipes.user_id = users.user_id;`
+     JOIN users ON recipes.user_id = users.user_id ORDER BY RANDOM()
+            LIMIT 16;
+        ;`
   )
     .then(data => {
       return data.rows;
