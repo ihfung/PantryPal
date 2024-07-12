@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import '../style/view_recipes.scss';
+import backgroundImg from '../Assets/background1.jpg'; 
 
-export default function View() {
+export default function View(props) {
   const [form, setForm] = useState({
-    title: '',
-    ingredients: '',
-    rating: '',
-    description: '',
+    title: props.recipe.title,
+    ingredients: props.recipe.ingredients,
+    rating: props.recipe.rating,
+    description: props.recipe.description,
     comment: '',
     comments: [],
     image: ''
@@ -30,13 +31,14 @@ export default function View() {
         <div className="form-row">
           <div className="form-group">
             <label>Image</label>
-            <input type="text" name="image" value={form.image} onChange={handleInputChange} placeholder="Image URL" />
+            <img src={props.recipe.img} alt="Recipe" />
           </div>
+          <div className="form-field">
           <div className="form-group">
             <label>Title</label>
             <input type="text" name="title" value={form.title} onChange={handleInputChange} />
           </div>
-        </div>
+        
         <div className="form-group">
           <label>Ingredients</label>
           <input type="text" name="ingredients" value={form.ingredients} onChange={handleInputChange} />
@@ -45,14 +47,15 @@ export default function View() {
           <label>Rating</label>
           <input type="text" name="rating" value={form.rating} onChange={handleInputChange} />
         </div>
+        </div>
+        
+        </div>
         <div className="form-group">
           <label>Description</label>
           <textarea name="description" value={form.description} onChange={handleInputChange}></textarea>
         </div>
-        <button type="submit">Add Recipe</button>
       </form>
       <div className="comments-section">
-        <h2>Comments</h2>
         <div className="form-group">
           <label>Add comments</label>
           <input type="text" name="comment" value={form.comment} onChange={handleInputChange} />

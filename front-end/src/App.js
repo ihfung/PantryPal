@@ -51,11 +51,11 @@ const App = () => {
       </header>
       <NavBar show={showNav} isLoggedIn={isLoggedIn} onLogout={handleLogout} />
       <Routes>
+        <Route path="/recipes/:id" element={<ViewRecipes />} />
         <Route path="/" element={<Home />} />
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/add_recipes" element={<AddRecipes />} />
         <Route path="/my_recipes" element={<MyRecipes userId={userId} />}/>
-        <Route path="/view_recipes" element={<ViewRecipes />} />
         <Route path="/saved_recipes" element={<SavedRecipes />} />
         <Route path="/login"element={<LoginForm onLogin={handleLogin} />}
         />

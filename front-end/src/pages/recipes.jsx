@@ -6,17 +6,19 @@ import '../style/navbar.scss';
 import '../style/footer.scss';
 import '../style/recipes.scss';
 
+
 const Recipes = ({userId}) =>{
  
   const [recipes, setRecipes] = useState([]);
 
-
+console.log(recipes);
 const fetchRecipes = async (query = '') => {
     try {
         const endpoint = query ? `/recipes/search?query=${query}` : '/recipes/recipes';
       const response = await fetch(endpoint);
         if (response.ok) {
           const data = await response.json();
+          console.log(data)
           setRecipes(data); // Update recipes state with fetched data
         } else {
           console.error('Failed to fetch recipes:', response.statusText);

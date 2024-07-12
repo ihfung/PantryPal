@@ -12,6 +12,12 @@
     color: #333;
   }
 
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    flex-grow:2;
+  }
+
   form {
     display: flex;
     flex-direction: column;
@@ -22,7 +28,7 @@
       margin-bottom: 20px;
 
       .form-group {
-        flex: 1;
+        flex: 3;
         margin-right: 10px;
 
         &:last-child {
@@ -30,6 +36,14 @@
         }
       }
     }
+
+
+    img{
+      display: flex;
+      max-width: 100%;
+      // max-height: 50%
+    
+      }
 
     .form-group {
       margin-bottom: 20px;
@@ -109,3 +123,35 @@
     }
   }
 }
+
+.form-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 0; 
+  margin: 0;
+}
+
+.form-group img {
+  // max-width: 50%;
+  // max-height: 50%;
+  display: block; 
+  margin: 0; 
+  padding: 0;
+}
+
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin: 0; 
+  padding: 0;
+  margin-left: 10px;
+}
+
+
+.form-group {
+  margin: 0;
+  padding: 5px 0; 
+}
+
+
