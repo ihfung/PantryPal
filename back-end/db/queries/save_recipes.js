@@ -3,7 +3,7 @@ const db = require('../connection');
 //add new saved recipe
 const addSaveRecipe = function(user_id, recipe_id) {
   return db.query(
-    'INSERT INTO saved_recipes (user_id, recipe_id) VALUES ($1, $2) RETURNING *;', [user_id, recipe_id])
+    'INSERT INTO save_recipe (user_id, recipe_id) VALUES ($1, $2) RETURNING *;', [user_id, recipe_id])
     .then(data => {
       return data.rows[0];
     }).catch((err) => {
@@ -15,7 +15,7 @@ const addSaveRecipe = function(user_id, recipe_id) {
 //remove saved recipe
 const removeSaveRecipe = function(user_id, recipe_id) {
   return db.query(
-    'DELETE FROM saved_recipes WHERE user_id = $1 AND recipe_id = $2 RETURNING *;', [user_id, recipe_id])
+    'DELETE FROM save_recipe WHERE user_id = $1 AND recipe_id = $2 RETURNING *;', [user_id, recipe_id])
     .then(data => {
       return data.rows[0];
     }).catch((err) => {
@@ -24,14 +24,14 @@ const removeSaveRecipe = function(user_id, recipe_id) {
 };
 
 //get all saved recipes
-const getSavedRecipes = function(user_id) {
-  return db.query(
-    'SELECT * FROM saved_recipes WHERE user_id = $1;', [user_id])
+const getSavedRecipesByUserId = function(user_id) {
+  return db.query('SELECT recipes.*, users.profile_pic FROM recipes JOIN save_recipe ON save_recipe.recipe_id = recipes.recipe_id  JOIN users ON recipes.user_id = users.user_id WHERE save_recipe.user_id = $1;', [user_id])
     .then(data => {
+      console.log(data.rows);
       return data.rows;
     }).catch((err) => {
       console.log(err.message);
     });
 };
 
-module.exports = {addSaveRecipe, removeSaveRecipe, getSavedRecipes};
+module.exports = {addSaveRecipe, removeSaveRecipe, getSavedRecipesByUserId};

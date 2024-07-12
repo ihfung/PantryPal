@@ -10,17 +10,19 @@ router.get("/login", (req, res) => {
 
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
+
   userQueries
     .getUserByUsername(username)
     .then((user) => {
       if (!user) {
         return res.status(404).json({ error: "User not found" });
       }
+      
       if (password !== user.password) {
         return res.status(401).json({ error: "Incorrect password" });
       }
 
-      req.session.userId = user.id;
+
       res.send({
         id: user.user_id,
         username: user.username,
@@ -45,9 +47,9 @@ router.post("/register", (req, res) => {
   userQueries
     .addUser({ username, email, password })
     .then((user) => {
-      req.session.userId = user.id;
+      req.session.userId = user.user_id;
       res.send({
-        id: user.id,
+        id: user.user_id,
         username: user.username,
         email: user.email
       });

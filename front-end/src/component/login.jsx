@@ -14,8 +14,9 @@ const LoginForm = ({ onLogin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
+      
       const response = await fetch('/users/login', {
         method: 'POST',
         headers: {
@@ -23,9 +24,9 @@ const LoginForm = ({ onLogin }) => {
         },
         body: JSON.stringify({ username, password }),
       });
-
+      
       const data = await response.json();
-      console.log(data);
+
       if (response.ok) {
         localStorage.setItem('token', data.token);
         console.log('Token set:', localStorage.getItem('token'));

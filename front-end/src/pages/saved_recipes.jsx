@@ -1,41 +1,53 @@
-import {useState} from "react";
-import NavBar from "../component/navbar";
+import {useState, useEffect} from "react";
+
 import '../style/navbar.scss';
 import '../style/footer.scss';
 import '../style/navbar.scss';
 import '../style/footer.scss';
 import '../style/my_recipes.scss';
-import { GiHamburgerMenu } from "react-icons/gi";
+
 import Footer from "../component/footer";
-import img2 from "../Assets/img_2.jpg";
-import image from "../Assets/image.jpg";
+
 import Saved from "../component/saved";
 
 
-const SavedRecipes = () =>{
-  const [showNav, setShowNav] = useState(false)
-  const recipes = [
-    {
-        title: "Chicken Pan Pizza",
-        image: image,
-        authorImg: img2,
-    }, 
-    {
-        title: "Spaghetti and Meatballs",
-        image: image,
-        authorImg: img2,
-    },
-    {
-        title: "American Cheese Burger",
-       image: image,
-        authorImg: img2,
-    },
-    {
-        title: "Mutton Biriyani",
-        image: image,
-        authorImg: img2,
+const SavedRecipes = (props) => {
+ 
+  const [recipes, setRecipes] = useState([]);
+  const [error, setError] = useState(null);
+  
+  
+  const fetchSaveRecipes = async () => {
+  
+  try {
+    const response = await fetch('/save/save_recipe', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    const data = await response.json();
+    // console.log(data);
+    
+    if (response.ok) {
+      setRecipes(data);
+      console.log('Save recipe successful');
+    } else {
+      
+      console.error('Save recipe failed:', data.error);
+     
     }
-  ]
+  } catch (error) {
+    console.error('Error saving recipe:', error);
+    setError('Save recipe failed: ' + error.message );
+  }
+}
+  
+ useEffect(() => {
+        fetchSaveRecipes(); // Fetch all recipes initially
+  }, []);
+
   return (
 
     <div className="content">

@@ -4,18 +4,22 @@ const userQueries = require('../db/queries/save_recipes');
 
 
 //get saved recipes
-router.get('/', (req, res) => {
+router.get('/save_recipe', async (req, res) => {
+  
   const userId = req.session.userId;
+ 
   if (!userId) {
     res.redirect('/login');
     return res.send({message: 'You must be logged in to view saved recipes'});
   }
-  userQueries.getSavedRecipesByUserId(req.query.userId)
-    .then(recipes => {
-      res.render('saved_recipes', {recipes: recipes, user: req.session.userId}); 
-    }).catch(error => {
-      res.status(400).json({ message: error.message });
-    });
+  try {
+    const save = await userQueries.getSavedRecipesByUserId(userId);
+    res.json(save);
+  } catch (err) {
+    console.error('Error fetching recipes:', err.message);
+    res.status(500).json({ error: 'Failed to fetch recipes' });
+  }
+  
 });
 
 
@@ -49,7 +53,7 @@ router.post('/:id/delete', (req, res) => {
 
   userQueries.removeSaveRecipe(userId, recipeId)
     .then((saved) => {
-      res.redirect('/saved_recipes');
+      res.redirect('/save_recipe');
     }).catch(error => {
       res.status(400).json({ message: error.message });
     });
