@@ -22,7 +22,7 @@ router.post("/login", (req, res) => {
         return res.status(401).json({ error: "Incorrect password" });
       }
 
-
+      req.session.userId = user.user_id;
       res.send({
         id: user.user_id,
         username: user.username,
