@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const pool = require('../db/connection');
 const userQueries = require('../db/queries/recipe');
 
 
@@ -17,33 +18,33 @@ router.get('/recipes', async (req, res) => {
 //search recipes by title, ingredients, or directions
 router.get('/search', async (req, res) => {
   const { query } = req.query;
-  
+
   try {
     const recipes = await userQueries.searchRecipes(query);
-    res.json(recipes); // Send the recipes back as JSON
+    res.json(recipes);
   } catch (error) {
     console.error('Error fetching recipes:', error.message);
     res.status(500).json({ message: 'Server error' });
   }
 });
-  
+
 
 
 //add new recipe
 router.get('/add_recipes', (req, res) => {
-  res.render('add_recipes', {user: req.session.userId});
+  res.render('add_recipes', { user: req.session.userId });
 });
 
-router.post('/add_recipes',  (req, res) => {
+router.post('/add_recipes', (req, res) => {
   const userId = req.session.userId;
   
   if (!userId) {
     return res.status(400).send({ error: "error" });
   }
-  const {title, ingredients, description, directions, image} = req.body;
-  
-  
-  userQueries.addRecipe({title, description,ingredients,directions, image, userId})
+  const { title, ingredients, description, directions, image } = req.body;
+
+
+  userQueries.addRecipe({ title, description, ingredients, directions, image, userId })
     .then((recipe) => {
       res.send({
         title: recipe.title,
@@ -58,12 +59,23 @@ router.post('/add_recipes',  (req, res) => {
     });
 });
 
+//add pages for home page
+router.get('/', async (req, res) => {
+  try {
+    const recipes = await pool.query('SELECT img FROM recipes LIMIT 9');
+    res.json(recipes.rows);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 //edit recipe
 router.get('/edit/:id', (req, res) => {
   const recipeId = req.params.id;
   userQueries.getRecipe(recipeId)
     .then(recipe => {
-      res.render('edit_recipe', {user: req.session.userId, recipe: recipe});
+      res.render('edit_recipe', { user: req.session.userId, recipe: recipe });
     });
 });
 
@@ -75,9 +87,9 @@ router.post('/:id/edit_recipe', (req, res) => {
   }
 
   const recipeId = req.params.id;
-  const {title, description, ingredients, directions, img} = req.body;
+  const { title, description, ingredients, directions, img } = req.body;
 
-  userQueries.editRecipe({title, description, ingredients, directions, img, recipeId})
+  userQueries.editRecipe({ title, description, ingredients, directions, img, recipeId })
     .then(recipe => {
       res.redirect('/recipes');
     }).catch(error => {
@@ -94,7 +106,7 @@ router.post('/:id/delete', (req, res) => {
     return res.send({ error: "User not logged in!" });
   }
 
-  
+
   userQueries.deleteRecipe(recipeId)
     .then(() => {
       res.redirect('/recipes');
@@ -110,10 +122,10 @@ router.get('/:id', async (req, res) => {
   userQueries.getRecipe(recipeId)
     .then(recipe => {
       if (!recipe) {
-      
+
         return res.status(404).json({ message: "Recipe not found!" });
       }
-      res.render('recipe', {recipe: recipe, user: userId});
+      res.render('recipe', { recipe: recipe, user: userId });
     }).catch(error => {
       res.status(400).json({ message: error.message });
     });
@@ -123,7 +135,7 @@ router.get('/:id', async (req, res) => {
 router.get('/category/:category', async (req, res) => {
   userQueries.filterRecipesByCategory(req.params.category)
     .then(recipes => {
-      res.render('recipes', {recipes: recipes, user: req.session.userId});
+      res.render('recipes', { recipes: recipes, user: req.session.userId });
     }).catch(error => {
       res.status(400).json({ message: error.message });
     });

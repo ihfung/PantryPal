@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const userQueries = require('../db/queries/users');
 
+
+//Login routes
 router.get("/login", (req, res) => {
   res.render('login', { user: req.session.userId });
 });
@@ -20,8 +22,7 @@ router.post("/login", (req, res) => {
         return res.status(401).json({ error: "Incorrect password" });
       }
 
-      
-      req.session.userId = user.user_id;
+
       res.send({
         id: user.user_id,
         username: user.username,
@@ -34,14 +35,17 @@ router.post("/login", (req, res) => {
     });
 });
 
+
+
+
 router.get('/register', (req, res) => {
   res.render('register', { user: req.session.userId });
 });
 
 router.post("/register", (req, res) => {
-  const { username, email, password} = req.body;
+  const { username, email, password } = req.body;
   userQueries
-    .addUser({username, email, password})
+    .addUser({ username, email, password })
     .then((user) => {
       req.session.userId = user.user_id;
       res.send({
