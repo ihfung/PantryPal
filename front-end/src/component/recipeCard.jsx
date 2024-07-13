@@ -13,7 +13,28 @@ axios.defaults.baseURL = 'http://localhost:3000';
 export default function RecipeCard({recipe, userId}){
     const [liked, setLiked] = useState(false);
     console.log(recipe);
-
+    const handleSaveRecipe = async (e) => {
+    e.preventDefault();
+    
+    try {
+        console.log('Recipe:', recipe.recipe_id);
+        const response = await fetch(`/save/${recipe.recipe_id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ recipe })
+        });
+        if (response.ok) {
+            console.log('Recipe saved!');
+        } else {
+            console.error('Failed to save the recipe!');
+        }
+    } catch (error) {
+        console.error('There was an error saving the recipe!', error);
+    }
+};
+  
     useEffect(() => {
     //     console.log('User ID:', userId);
     // console.log('Recipe ID:', recipe.id);
@@ -59,7 +80,7 @@ export default function RecipeCard({recipe, userId}){
             <div className="recipe-card-info">
                 <img className="auther-img" src={recipe.profile_pic} alt=""/>
                 <div className="save-icon">
-                    <HiSave />
+                    <Link onClick={handleSaveRecipe}><HiSave /></Link>
                 </div>
                 <p className="recipe-title">{recipe.title}</p>
                 <p className="recipe-desc">{recipe.description}</p>
