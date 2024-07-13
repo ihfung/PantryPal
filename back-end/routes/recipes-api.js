@@ -151,7 +151,7 @@ router.get('/:id', async (req, res) => {
 
         return res.status(404).json({ message: "Recipe not found!" });
       }
-      res.json( { recipe: recipe});
+      res.json({ recipe: recipe});
     }).catch(error => {
       res.status(400).json({ message: error.message });
     });

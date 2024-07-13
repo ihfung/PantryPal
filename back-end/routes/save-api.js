@@ -32,10 +32,9 @@ router.post('/:id', (req, res) => {
     return res.send({message: 'You must be logged in to save a recipe'});
   }
 
-
   userQueries.addSaveRecipe(userId, recipeId)
     .then((saved) => {
-      res.redirect('/recipes/' + recipeId);
+      res.json({ saved });
     }).catch(error => {
       res.status(400).json({ message: error.message });
     });
