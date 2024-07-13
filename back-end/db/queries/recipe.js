@@ -79,12 +79,13 @@ const deleteRecipe = function(id) {
 // filter by category
 const filterRecipesByCategory = function(category) {
   return db.query(
-    `SELECT * FROM recipes WHERE category = $1;`, [category])
+    `SELECT * FROM recipes WHERE category_id = $1;`, [category])
     .then(data => {
+      console.log(data.rows, "data rows");
       return data.rows;
     })
     .catch(err => {
-      console.log(err.message);
+      throw new Error(`Error filtering recipes by category: ${err.message}`);
     });
 };
 
