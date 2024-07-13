@@ -23,7 +23,7 @@ router.post("/login", (req, res) => {
       }
 
       req.session.userId = user.user_id;
-      res.send({
+      res.json({
         id: user.user_id,
         username: user.username,
         profile_pic: user.profile_pic
