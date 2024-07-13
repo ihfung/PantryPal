@@ -1,7 +1,7 @@
 const db = require('../connection');
 
 // add new recipe
-const addRecipe = function(newRecipe) {
+const addRecipe = function (newRecipe) {
   return db.query(
     `INSERT INTO recipes (title, description, ingredients, directions, user_id, img) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`,
     [newRecipe.title, newRecipe.description, newRecipe.ingredients, newRecipe.directions, newRecipe.userId, newRecipe.image]
@@ -15,7 +15,7 @@ const addRecipe = function(newRecipe) {
 };
 
 // get recipes by id
-const getRecipeById = function(id) {
+const getRecipeById = function (id) {
   return db.query(
     'SELECT * FROM recipes WHERE recipe_id = $1;', [id])
     .then(data => {
@@ -27,7 +27,7 @@ const getRecipeById = function(id) {
 };
 
 // get all recipes
-const getAllRecipes = function() {
+const getAllRecipes = function () {
   return db.query(
     'SELECT * FROM recipes ORDER BY id DESC LIMIT 10;')
     .then(data => {
@@ -39,7 +39,7 @@ const getAllRecipes = function() {
 };
 
 // get recipes by user id
-const getRecipesByUserId = function(id) {
+const getRecipesByUserId = function (id) {
   return db.query(
     'SELECT * FROM recipes WHERE user_id = $1 ORDER BY id DESC LIMIT 10;', [id])
     .then(data => {
@@ -51,7 +51,7 @@ const getRecipesByUserId = function(id) {
 };
 
 // edit recipe
-const editRecipe = function(recipe) {
+const editRecipe = function (recipe) {
   return db.query(
     'UPDATE recipes SET title = $1, description = $2, ingredients = $3, directions = $4 WHERE id = $5 RETURNING *;',
     [recipe.title, recipe.description, recipe.ingredients, recipe.directions, recipe.id]
@@ -65,7 +65,7 @@ const editRecipe = function(recipe) {
 };
 
 // delete recipe
-const deleteRecipe = function(id) {
+const deleteRecipe = function (id) {
   return db.query(
     'DELETE FROM recipes WHERE id = $1 RETURNING *;', [id])
     .then(data => {
@@ -76,12 +76,15 @@ const deleteRecipe = function(id) {
     });
 };
 
-// filter by category
-const filterRecipesByCategory = function(category) {
+
+const filterRecipesByCategory = function (category) {
   return db.query(
-    `SELECT * FROM recipes WHERE category_id = $1;`, [category])
+    `SELECT recipes.*, users.profile_pic
+    FROM recipes
+    JOIN users ON recipes.user_id = users.user_id
+    WHERE recipes.category_id = $1;`, [category])
     .then(data => {
-      console.log(data.rows, "data rows");
+
       return data.rows;
     })
     .catch(err => {
@@ -89,8 +92,9 @@ const filterRecipesByCategory = function(category) {
     });
 };
 
+
 // search recipes by title, ingredients, or directions
-const searchRecipes = function(query) {
+const searchRecipes = function (query) {
   return db.query(
     `SELECT recipes.recipe_id, recipes.title, recipes.description, recipes.img, users.profile_pic as profile_pic
      FROM recipes
@@ -110,7 +114,7 @@ const searchRecipes = function(query) {
 };
 
 // get recipes with user profile pictures
-const getRecipesWithUserProfiles = function() {
+const getRecipesWithUserProfiles = function () {
   return db.query(
     `SELECT recipes.recipe_id, recipes.title, recipes.description, recipes.img, users.profile_pic as profile_pic
      FROM recipes 
