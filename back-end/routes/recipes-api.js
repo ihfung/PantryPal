@@ -59,6 +59,32 @@ router.post('/add_recipes', (req, res) => {
     });
 });
 
+// Retrieve categories name for nav bar from database
+router.get('/categories', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT category_id,category_name FROM categories');
+
+    res.json(result.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Endpoint to fetch recipes by category
+router.get('/category', async (req, res) => {
+const { category } = req.query;
+console.log("inside recipes/categories", category);
+try {
+  const recipes = await userQueries.filterRecipesByCategory(category);
+  res.json(recipes);
+} catch (error) {
+  console.log(error, "message error");
+  res.status(500).json({ error: 'Internal server error' });
+}
+});
+
+
 //add pages for home page
 router.get('/', async (req, res) => {
   try {

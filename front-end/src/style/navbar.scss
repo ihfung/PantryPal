@@ -41,10 +41,29 @@ header {
   width: 240px;
   background: #011627;
   position: absolute;
-  height: 95vh;
+  height: auto;
   // padding: 0 30px;
   left: -100%;
   transition: all 1s;
+  .subcategories {
+    list-style-type: none;
+    padding-left: 70px; 
+    .span icon{
+      margin-left: 15px;
+      display: flex;
+      align-items: center;
+    }
+    a {
+      display: block;
+      padding: 5px 0; 
+      text-decoration: none;
+      color: #ddd7d7; 
+      &:hover {
+        color: #a5a3a3; 
+      }
+    }
+    
+  }
 }
 
 .sidenav.active{
