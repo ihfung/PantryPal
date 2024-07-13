@@ -9,8 +9,8 @@ router.get('/save_recipe', async (req, res) => {
   const userId = req.session.userId;
  
   if (!userId) {
-    res.redirect('/login');
-    return res.send({message: 'You must be logged in to view saved recipes'});
+    res.json({ redirectUrl: '/login' });
+    return res.status(500).json({ error: 'You must be logged in!' });
   }
   try {
     const save = await userQueries.getSavedRecipesByUserId(userId);
@@ -28,16 +28,18 @@ router.post('/:id', (req, res) => {
   const userId = req.session.userId;
   const recipeId = req.params.id;
   if (!userId) {
-    res.redirect('/login');
-    return res.send({message: 'You must be logged in to save a recipe'});
+    res.json({ redirectUrl: '/login' });
+    return res.status(500).json({ error: 'You must be logged in!' });
   }
 
   userQueries.addSaveRecipe(userId, recipeId)
     .then((saved) => {
+      
       res.json({ saved });
     }).catch(error => {
       res.status(400).json({ message: error.message });
     });
+  
 });
 
 
@@ -46,13 +48,14 @@ router.post('/:id/delete', (req, res) => {
   const userId = req.session.userId;
   const recipeId = req.params.id;
   if (!userId) {
-    res.redirect('/login');
-    return res.send({message: 'You must be logged in to remove a saved recipe'});
+    res.json({ redirectUrl: '/login' });
+    return res.status(500).json({ error: 'You must be logged in!' });
   }
 
   userQueries.removeSaveRecipe(userId, recipeId)
     .then((saved) => {
-      res.redirect('/save_recipe');
+      console.log('Recipe removed from saved!');
+      res.json({ saved });
     }).catch(error => {
       res.status(400).json({ message: error.message });
     });

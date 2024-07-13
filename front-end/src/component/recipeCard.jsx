@@ -12,12 +12,12 @@ axios.defaults.baseURL = 'http://localhost:3000';
 
 export default function RecipeCard({recipe, userId}){
     const [liked, setLiked] = useState(false);
-    console.log(recipe);
+    
     const handleSaveRecipe = async (e) => {
     e.preventDefault();
     
     try {
-        console.log('Recipe:', recipe.recipe_id);
+        
         const response = await fetch(`/save/${recipe.recipe_id}`, {
             method: 'POST',
             headers: {

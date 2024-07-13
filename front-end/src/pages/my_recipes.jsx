@@ -1,41 +1,43 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import NavBar from "../component/navbar";
 import '../style/navbar.scss';
 import '../style/footer.scss';
 import '../style/navbar.scss';
 import '../style/footer.scss';
 import '../style/my_recipes.scss';
-import { GiHamburgerMenu } from "react-icons/gi";
+
 import Footer from "../component/footer";
-import img2 from "../Assets/img_2.jpg";
-import image from "../Assets/image.jpg";
+
 import AllMyRecipes from "../component/myallrecipes";
 
 
-const MyRecipes = () =>{
+
+const MyRecipes = ({recipe, userId}) =>{
   const [showNav, setShowNav] = useState(false)
-  const recipes = [
-    {
-        title: "Chicken Pan Pizza",
-        image: image,
-        authorImg: img2,
-    }, 
-    {
-        title: "Spaghetti and Meatballs",
-        image: image,
-        authorImg: img2,
-    },
-    {
-        title: "American Cheese Burger",
-       image: image,
-        authorImg: img2,
-    },
-    {
-        title: "Mutton Biriyani",
-        image: image,
-        authorImg: img2,
+  const [recipes, setRecipes] = useState([]);
+  
+  const fetchMyRecipes = async () => {
+   
+    try {
+      console.log("line 22", userId);
+      const endpoint = `/my_recipes`;
+      const response = await fetch(endpoint);
+      if (response.ok) {
+        const data = await response.json();
+        //console.log(data);
+        setRecipes(data);
+      } else {
+        console.error('Failed to fetch recipes:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error fetching recipes:', error.message);
     }
-  ]
+  }
+  
+  useEffect(() => {
+    fetchMyRecipes();
+  });
+
   return (
 
     <div className="content">
@@ -44,7 +46,7 @@ const MyRecipes = () =>{
       <div className="recipes-container">
                 {/* <RecipeCard /> */}
                 {recipes.map((recipe, index) => (
-                    <AllMyRecipes key={index} recipe={recipe} />
+                    <AllMyRecipes key={index} recipe={recipe} userId={userId}/>
                 ))}
      </div>
       </div>
