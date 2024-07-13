@@ -88,7 +88,7 @@ try {
 //add pages for home page
 router.get('/', async (req, res) => {
   try {
-    const recipes = await pool.query('SELECT img FROM recipes LIMIT 9');
+    const recipes = await pool.query('SELECT * FROM recipes LIMIT 9');
     res.json(recipes.rows);
   } catch (err) {
     console.error(err.message);
@@ -151,7 +151,7 @@ router.get('/:id', async (req, res) => {
 
         return res.status(404).json({ message: "Recipe not found!" });
       }
-      res.render('recipe', { recipe: recipe, user: userId });
+      res.json( { recipe: recipe});
     }).catch(error => {
       res.status(400).json({ message: error.message });
     });

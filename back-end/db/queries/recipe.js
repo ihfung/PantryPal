@@ -17,7 +17,7 @@ const addRecipe = function(newRecipe) {
 // get recipes by id
 const getRecipeById = function(id) {
   return db.query(
-    'SELECT * FROM recipes WHERE id = $1;', [id])
+    'SELECT * FROM recipes WHERE recipe_id = $1;', [id])
     .then(data => {
       return data.rows[0];
     })
@@ -92,7 +92,7 @@ const filterRecipesByCategory = function(category) {
 // search recipes by title, ingredients, or directions
 const searchRecipes = function(query) {
   return db.query(
-    `SELECT recipes.title, recipes.description, recipes.img, users.profile_pic as profile_pic
+    `SELECT recipes.recipe_id, recipes.title, recipes.description, recipes.img, users.profile_pic as profile_pic
      FROM recipes
      JOIN users ON recipes.user_id = users.user_id
      WHERE recipes.title ILIKE $1
@@ -112,7 +112,7 @@ const searchRecipes = function(query) {
 // get recipes with user profile pictures
 const getRecipesWithUserProfiles = function() {
   return db.query(
-    `SELECT recipes.title, recipes.description, recipes.img, users.profile_pic as profile_pic
+    `SELECT recipes.recipe_id, recipes.title, recipes.description, recipes.img, users.profile_pic as profile_pic
      FROM recipes 
      JOIN users ON recipes.user_id = users.user_id ORDER BY RANDOM()
             LIMIT 16;

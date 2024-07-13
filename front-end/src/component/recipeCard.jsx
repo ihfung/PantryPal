@@ -5,12 +5,14 @@ import { FaRegComment } from "react-icons/fa";
 import { HiSave } from "react-icons/hi";
 import axios from 'axios';
 import '../style/recipes.scss';
+import { Link } from 'react-router-dom';
 
 axios.defaults.baseURL = 'http://localhost:3000';
 
 
 export default function RecipeCard({recipe, userId}){
     const [liked, setLiked] = useState(false);
+    console.log(recipe);
 
     useEffect(() => {
     //     console.log('User ID:', userId);
@@ -61,7 +63,7 @@ export default function RecipeCard({recipe, userId}){
                 </div>
                 <p className="recipe-title">{recipe.title}</p>
                 <p className="recipe-desc">{recipe.description}</p>
-                <a className="view-btn" href="#!">VIEW RECIPE</a>
+                <Link className="view-btn" to={`/recipes/${recipe.recipe_id}`}>VIEW RECIPE</Link>
                 <div className="like-comment ">
                 <BiSolidLike onClick={handleLike} className={liked ? 'liked' : ''} />
                 <FaRegComment />
