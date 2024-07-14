@@ -157,17 +157,6 @@ router.get('/:id', async (req, res) => {
     });
 });
 
-//filter recipes by category
-router.get('/category/:category', async (req, res) => {
-  userQueries.filterRecipesByCategory(req.params.category)
-    .then(recipes => {
-      res.render('recipes', { recipes: recipes, user: req.session.userId });
-    }).catch(error => {
-      res.status(400).json({ message: error.message });
-    });
-});
-
-
 
 
 module.exports = router;

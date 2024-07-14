@@ -33,9 +33,10 @@ const getUserByEmail = function(email) {
 //get user by id
 const getUserById = function(id) {
   return db.query(
-    'SELECT * FROM users WHERE id = $1;', [id])
+    'SELECT * FROM users WHERE user_id = $1;', [id])
     .then(data => {
-      return data.rows[0];
+      //return data.rows[0];
+      console.log(data.rows[0]);
     }).catch((err) => {
       console.log(err.message);
     });
