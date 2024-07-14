@@ -61,6 +61,7 @@
 
   .view-btn {
     font-size: 1em;
+    padding: 8px;
     font-weight: bold;
     color: var(--primary-color);
     margin-top: 0.75em;
@@ -69,17 +70,27 @@
   .like-comment {
     display: flex;
     align-items: center;
-    margin-top: 0.5em;
+    // justify-content: space-between;
+    margin-top: auto;
+    border-top: 1px solid #ddd;
     cursor: pointer; 
     padding-top: 13px;
-    
+    padding-bottom: 5px;
+    .liked {
+      color: red;
+      font-weight: bold;
+     }
     svg {
-      font-size: 1.4em; 
-      margin-right: 25px; 
-       
+    margin-right: 4px;
+    cursor: pointer;
     }
+    span{
+    margin-right: 18px;
+    }
+
   }
 }
+
 
 
 

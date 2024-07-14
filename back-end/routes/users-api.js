@@ -72,9 +72,9 @@ router.get("/", (req, res) => {
 
       res.send({
         user: {
-          name: user.name,
+          name: user.user_name,
           email: user.email,
-          id: userId,
+          id: user.user_id,
         },
       });
     })

@@ -26,19 +26,17 @@ const App = () => {
   useEffect(() => {
     const storedUserId = localStorage.getItem('userId');
     if (storedUserId) {
-      setUserId(storedUserId);
+      setUserId(parseInt(storedUserId));
       setIsLoggedIn(true);
     }
   }, []);
 
   const handleLogin = (user) => {
-   console.log("login as user");
     setUserId(user.id);
-    console.log(user.id, "user.id inside handlelogin",user, "user is from app"); 
-    
     setIsLoggedIn(true);
-   localStorage.setItem('userId', user.id); 
+    localStorage.setItem('userId', user.id.toString());
   };
+  
   const handleLogout = () => {
     setUserId(null);
     setIsLoggedIn(false);
@@ -55,7 +53,7 @@ const App = () => {
       <Routes>
         <Route path="/recipes/:id" element={<ViewRecipes />} />
         <Route path="/" element={<Home />} />
-        <Route path="/recipes" element={<Recipes />} />
+        <Route path="/recipes" element={<Recipes userId={userId} />} />
         <Route path="/add_recipes" element={<AddRecipes />} />
         <Route path="/my_recipes" element={<MyRecipes userId={userId} />}/>
         <Route path="/saved_recipes" element={<SavedRecipes />} />
