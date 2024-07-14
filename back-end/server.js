@@ -25,13 +25,15 @@ app.use(session({
 const usersRoutes = require('./routes/users-api');
 const recipeRoutes = require('./routes/recipes-api');
 const likeRoutes = require('./routes/likes-api');
-// const saveRoutes = require('./routes/save-api');
+const saveRoutes = require('./routes/save-api');
+const myRecipes = require('./routes/myRecipes-api');
 // const commentRoutes = require('./routes/comments-api');
 
 app.use('/users', usersRoutes);
 app.use('/recipes', recipeRoutes);
 app.use('/likes', likeRoutes);
-// app.use('/save', saveRoutes);
+app.use('/save', saveRoutes);
+app.use('/my_recipes', myRecipes);
 // app.use('/comments', commentRoutes);
 
 

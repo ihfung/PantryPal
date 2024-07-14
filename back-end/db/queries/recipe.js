@@ -1,7 +1,7 @@
 const db = require('../connection');
 
 // add new recipe
-const addRecipe = function (newRecipe) {
+const addRecipe = function(newRecipe) {
   return db.query(
     `INSERT INTO recipes (title, description, ingredients, directions, user_id, img) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`,
     [newRecipe.title, newRecipe.description, newRecipe.ingredients, newRecipe.directions, newRecipe.userId, newRecipe.image]
@@ -15,7 +15,7 @@ const addRecipe = function (newRecipe) {
 };
 
 // get recipes by id
-const getRecipeById = function (id) {
+const getRecipeById = function(id) {
   return db.query(
     'SELECT * FROM recipes WHERE recipe_id = $1;', [id])
     .then(data => {
@@ -27,7 +27,7 @@ const getRecipeById = function (id) {
 };
 
 // get all recipes
-const getAllRecipes = function () {
+const getAllRecipes = function() {
   return db.query(
     'SELECT * FROM recipes ORDER BY id DESC LIMIT 10;')
     .then(data => {
@@ -39,9 +39,9 @@ const getAllRecipes = function () {
 };
 
 // get recipes by user id
-const getRecipesByUserId = function (id) {
+const getRecipesByUserId = function(id) {
   return db.query(
-    'SELECT * FROM recipes WHERE user_id = $1 ORDER BY id DESC LIMIT 10;', [id])
+    'SELECT recipes.*, users.profile_pic FROM recipes JOIN users ON recipes.user_id = users.user_id WHERE recipes.user_id = $1 ORDER BY recipes.recipe_id DESC LIMIT 10;', [id])
     .then(data => {
       return data.rows;
     })
@@ -51,7 +51,7 @@ const getRecipesByUserId = function (id) {
 };
 
 // edit recipe
-const editRecipe = function (recipe) {
+const editRecipe = function(recipe) {
   return db.query(
     'UPDATE recipes SET title = $1, description = $2, ingredients = $3, directions = $4 WHERE id = $5 RETURNING *;',
     [recipe.title, recipe.description, recipe.ingredients, recipe.directions, recipe.id]
@@ -65,9 +65,9 @@ const editRecipe = function (recipe) {
 };
 
 // delete recipe
-const deleteRecipe = function (id) {
+const deleteRecipe = function(userId, id) {
   return db.query(
-    'DELETE FROM recipes WHERE id = $1 RETURNING *;', [id])
+    'DELETE FROM recipes WHERE recipes.user_id =$1 AND recipes.recipe_id = $2 RETURNING *;', [userId, id])
     .then(data => {
       return data.rows[0];
     })
@@ -76,8 +76,56 @@ const deleteRecipe = function (id) {
     });
 };
 
+const deleteRecipeFromCategory = function(id) {
+  return db.query(
+    'DELETE FROM recipe_category WHERE recipe_id = $1;', [id])
+    .then(data => {
+      return data.rows[0];
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+};
 
-const filterRecipesByCategory = function (category) {
+const deleteRecipeFromFav = function(id) {
+  return db.query(
+    'DELETE FROM save_recipe WHERE recipe_id = $1;', [id])
+    .then(data => {
+      return data.rows[0];
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+
+};
+
+const deleteRecipeFromLike = function(id) {
+  return db.query(
+    'DELETE FROM likes WHERE recipe_id = $1;', [id])
+    .then(data => {
+      return data.rows[0];
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+
+};
+
+
+const deleteRecipeFromComment = function(id) {
+  return db.query(
+    'DELETE FROM comments WHERE recipe_id = $1;', [id])
+    .then(data => {
+      return data.rows[0];
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+
+};
+
+
+const filterRecipesByCategory = function(category) {
   return db.query(
     `SELECT recipes.*, users.profile_pic
     FROM recipes
@@ -139,5 +187,9 @@ module.exports = {
   deleteRecipe,
   searchRecipes,
   filterRecipesByCategory,
-  getRecipesWithUserProfiles
+  getRecipesWithUserProfiles,
+  deleteRecipeFromCategory,
+  deleteRecipeFromFav,
+  deleteRecipeFromLike,
+  deleteRecipeFromComment
 };
