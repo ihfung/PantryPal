@@ -52,7 +52,7 @@ const App = () => {
       </header>
       <NavBar show={showNav} isLoggedIn={isLoggedIn} onLogout={handleLogout} />
       <Routes>
-        <Route path="/recipes/:id" element={<ViewRecipes />} />
+        <Route path="/recipes/:id" element={<ViewRecipes userId={userId} />} />
         <Route path="/" element={<Home />} />
         <Route path="/recipes" element={<Recipes userId={userId} />} />
         <Route path="/add_recipes" element={<AddRecipes />} />

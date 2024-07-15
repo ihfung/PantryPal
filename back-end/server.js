@@ -27,14 +27,14 @@ const recipeRoutes = require('./routes/recipes-api');
 const likeRoutes = require('./routes/likes-api');
 const saveRoutes = require('./routes/save-api');
 const myRecipes = require('./routes/myRecipes-api');
-// const commentRoutes = require('./routes/comments-api');
+const commentRoutes = require('./routes/comments-api');
 
 app.use('/users', usersRoutes);
 app.use('/recipes', recipeRoutes);
 app.use('/likes', likeRoutes);
 app.use('/save', saveRoutes);
 app.use('/my_recipes', myRecipes);
-// app.use('/comments', commentRoutes);
+app.use('/comments', commentRoutes);
 
 
 // Example GET route to fetch data from PostgreSQL
