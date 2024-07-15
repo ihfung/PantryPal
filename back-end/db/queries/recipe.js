@@ -52,9 +52,10 @@ const getRecipesByUserId = function(id) {
 
 // edit recipe
 const editRecipe = function(recipe) {
+  
   return db.query(
-    'UPDATE recipes SET title = $1, description = $2, ingredients = $3, directions = $4 WHERE id = $5 RETURNING *;',
-    [recipe.title, recipe.description, recipe.ingredients, recipe.directions, recipe.id]
+    'UPDATE recipes SET title = $1, description = $2, ingredients = $3, directions = $4, img = $5 WHERE recipe_id = $6 RETURNING *;',
+    [recipe.title, recipe.description, recipe.ingredients, recipe.directions, recipe.image, recipe.recipeId]
   )
     .then(data => {
       return data.rows[0];
