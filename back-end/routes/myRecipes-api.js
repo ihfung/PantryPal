@@ -5,15 +5,23 @@ const userQueries = require('../db/queries/recipe');
 
 
 //edit recipe
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', async (req, res) => {
   const recipeId = req.params.id;
-  userQueries.getRecipe(recipeId)
+  const userId = req.session.userId;
+  if (!userId) {
+    res.redirect('/login');
+    return res.send({ error: "User not logged in!" });
+  }
+
+  userQueries.getRecipeById(recipeId)
     .then(recipe => {
-      res.render('edit_recipe', { user: req.session.userId, recipe: recipe });
+      res.json(recipe);
+    }).catch(error => {
+      res.status(400).json({ message: error.message });
     });
 });
 
-router.post('/:id/edit_recipe', (req, res) => {
+router.post('/edit/:id', (req, res) => {
   const userId = req.session.userId;
   if (!userId) {
     res.redirect('/login');
@@ -21,11 +29,12 @@ router.post('/:id/edit_recipe', (req, res) => {
   }
 
   const recipeId = req.params.id;
-  const { title, description, ingredients, directions, img } = req.body;
+  const { title, description, ingredients, directions, image } = req.body;
 
-  userQueries.editRecipe({ title, description, ingredients, directions, img, recipeId })
+  userQueries.editRecipe({ title, description, ingredients, directions, image, recipeId })
     .then(recipe => {
-      res.redirect('/recipes');
+      res.json(recipe);
+      
     }).catch(error => {
       res.status(400).json({ message: error.message });
     });
@@ -58,7 +67,7 @@ router.post('/:id/delete', (req, res) => {
 
 
 //get all recipes made by a user
-router.get('/', async (req, res) => {
+router.get('/', async(req, res) => {
   const userId = req.session.userId;
   userQueries.getRecipesByUserId(userId)
     .then(recipes => {

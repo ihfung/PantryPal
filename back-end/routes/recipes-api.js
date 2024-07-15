@@ -5,7 +5,7 @@ const userQueries = require('../db/queries/recipe');
 
 
 //get recipes from database
-router.get('/recipes', async (req, res) => {
+router.get('/recipes', async(req, res) => {
   try {
     const recipes = await userQueries.getRecipesWithUserProfiles();
     res.json(recipes);
@@ -16,7 +16,7 @@ router.get('/recipes', async (req, res) => {
 });
 
 //search recipes by title, ingredients, or directions
-router.get('/search', async (req, res) => {
+router.get('/search', async(req, res) => {
   const { query } = req.query;
 
   try {

@@ -6,7 +6,7 @@ export default function View(props) {
   const [form, setForm] = useState({
     title: props.recipe.title,
     ingredients: props.recipe.ingredients,
-    rating: props.recipe.rating,
+    directions: props.recipe.directions,
     description: props.recipe.description,
     comment: '',
     comments: [],
@@ -44,8 +44,8 @@ export default function View(props) {
           <input type="text" name="ingredients" value={form.ingredients} onChange={handleInputChange} />
         </div>
         <div className="form-group">
-          <label>Rating</label>
-          <input type="text" name="rating" value={form.rating} onChange={handleInputChange} />
+          <label>Directions</label>
+          <input type="text" name="directions" value={form.directions} onChange={handleInputChange} />
         </div>
         </div>
         
