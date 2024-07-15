@@ -86,4 +86,30 @@ router.post("/logout", (req, res) => {
   res.redirect("/users/login");
 });
 
+//get user by id
+router.get("/:id", (req, res) => {
+  const userId = req.session.id;
+  userQueries
+    .getUserById(userId)
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+      res.json(user);
+    })
+    .catch((err) => res.send(err));
+});
+
+//edit user profile
+router.post("/edit/:id", (req, res) => {
+  const userId = req.session.id;
+  const { username, email, password, profile_pic, bio } = req.body;
+  userQueries
+    .editUserProfile({ username, email, password, profile_pic, bio, userId })
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((err) => res.send(err));
+});
+
 module.exports = router;

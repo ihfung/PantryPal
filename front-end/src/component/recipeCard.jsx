@@ -14,11 +14,29 @@ axios.defaults.baseURL = 'http://localhost:3000';
 export default function RecipeCard({ recipe, userId }) {
     const [liked, setLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(0);
+    const [saved, setSaved] = useState(false);
+    const [notification, setNotification] = useState('');
+
     const handleSaveRecipe = async (e) => {
     e.preventDefault();
     
     try {
-        
+        if(saved) {
+        const response = await fetch(`/save/${recipe.recipe_id}/delete`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ recipe })
+        });
+        if (response.ok) {
+            console.log('Recipe unsaved!');
+            setSaved(false);
+            setNotification('Recipe unsaved successfully!');
+        } else {
+            console.error('Failed to save the recipe!');
+        }
+    } else {
         const response = await fetch(`/save/${recipe.recipe_id}`, {
             method: 'POST',
             headers: {
@@ -28,12 +46,18 @@ export default function RecipeCard({ recipe, userId }) {
         });
         if (response.ok) {
             console.log('Recipe saved!');
+            setSaved(true);
+            setNotification('Recipe saved successfully!');
+
         } else {
             console.error('Failed to save the recipe!');
-        }
+    }
+}
     } catch (error) {
         console.error('There was an error saving the recipe!', error);
     }
+
+     setTimeout(() => setNotification(''), 3000);
 };
   
     useEffect(() => {
@@ -81,6 +105,7 @@ export default function RecipeCard({ recipe, userId }) {
 
     return (
         <div className="recipe-card">
+            {notification && <div className="notification">{notification}</div>}
             <CustomImage imgSrc={recipe.img} />
             <div className="recipe-card-info">
                 <img className="auther-img" src={recipe.profile_pic} alt="" />

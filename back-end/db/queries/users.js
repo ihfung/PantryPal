@@ -53,8 +53,26 @@ const getUserByUsername = function(username) {
     });
 };
 
+//edit user profile
+const editUserProfile = function(user) {
+  return db.query(
+    'UPDATE users SET username = $1, email = $2, password = $3, profile_pic = $4, bio = $5 WHERE user_id = $6 RETURNING *',
+    [user.username, user.email, user.password, user.profile_pic, user.bio, user.userId]
+  )
+    .then(data => {
+      if (data.rows.length > 0) {
+        return data.rows[0]; // Return the first row (updated user)
+      } else {
+        throw new Error('No user updated');
+      }
+    })
+    .catch(err => {
+      console.error('Error updating user:', err.message);
+      throw err; // Propagate the error for handling in the calling code
+    });
+};
 
-module.exports = { addUser, getUserByEmail, getUserById, getUserByUsername };
+module.exports = { addUser, getUserByEmail, getUserById, getUserByUsername, editUserProfile };
 
 
 
