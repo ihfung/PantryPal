@@ -93,7 +93,10 @@ export default function RecipeCard({ recipe, userId }) {
                 <div className="like-comment ">
                     <BiSolidLike onClick={handleLike} className={liked ? 'liked' : ''} />
                     <span>{likeCount}</span>
-                    <FaRegComment />
+                    <Link to={`/recipes/${recipe.recipe_id}`}>
+      <FaRegComment />
+    </Link>
+                    
                 </div>
             </div>
         </div>

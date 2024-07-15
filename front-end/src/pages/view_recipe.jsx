@@ -10,9 +10,7 @@ import Footer from "../component/footer";
 import View from "../component/view";
 import { useParams } from "react-router-dom";
 
-const ViewRecipes = () =>{
-  
-  const [showNav, setShowNav] = useState(false)
+const ViewRecipes = ({userId}) =>{
   const [recipe, setRecipe] = useState(null)
   const params = useParams()
   const recipe_id = params.id
@@ -29,7 +27,7 @@ const ViewRecipes = () =>{
      
       
       <div className="main-add">
-      {recipe && <View recipe ={recipe}/> }
+      {recipe && <View recipe ={recipe} userId={userId}/> }
       </div>
       <Footer />
     </div>
