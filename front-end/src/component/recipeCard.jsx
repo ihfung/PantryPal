@@ -18,48 +18,47 @@ export default function RecipeCard({ recipe, userId }) {
     const [notification, setNotification] = useState('');
 
     const handleSaveRecipe = async (e) => {
-    e.preventDefault();
-    
-    try {
-        if(saved) {
-        const response = await fetch(`/save/${recipe.recipe_id}/delete`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ recipe })
-        });
-        if (response.ok) {
-            console.log('Recipe unsaved!');
-            setSaved(false);
-            setNotification('Recipe unsaved successfully!');
-        } else {
-            console.error('Failed to save the recipe!');
+        e.preventDefault();
+
+        try {
+            if (saved) {
+                const response = await fetch(`/save/${recipe.recipe_id}/delete`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ recipe })
+                });
+                if (response.ok) {
+                    console.log('Recipe unsaved!');
+                    setSaved(false);
+                    setNotification('Recipe unsaved successfully!');
+                } else {
+                    console.error('Failed to save the recipe!');
+                }
+            } else {
+                const response = await fetch(`/save/${recipe.recipe_id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ recipe })
+                });
+                if (response.ok) {
+                    console.log('Recipe saved!');
+                    setSaved(true);
+                    setNotification('Recipe saved successfully!');
+
+                } else {
+                    console.error('Failed to save the recipe!');
+                }
+            }
+        } catch (error) {
+            console.error('There was an error saving the recipe!', error);
         }
-    } else {
-        const response = await fetch(`/save/${recipe.recipe_id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ recipe })
-        });
-        if (response.ok) {
-            console.log('Recipe saved!');
-            setSaved(true);
-            setNotification('Recipe saved successfully!');
-
-        } else {
-            console.error('Failed to save the recipe!');
-    }
-}
-    } catch (error) {
-        console.error('There was an error saving the recipe!', error);
-    }
-
-     setTimeout(() => setNotification(''), 3000);
+        setTimeout(() => setNotification(''), 3000);
 };
-  
+
     useEffect(() => {
         console.log('RecipeCard initialized with userId:', userId);
         const fetchLikeStatus = async () => {
@@ -110,17 +109,19 @@ export default function RecipeCard({ recipe, userId }) {
             <div className="recipe-card-info">
                 <img className="auther-img" src={recipe.profile_pic} alt="" />
                 <div className="save-icon">
-                    <Link onClick={handleSaveRecipe}><HiSave /></Link>
+                    <Link onClick={handleSaveRecipe}><HiSave className={saved ? 'saved' : ''}/></Link>
                 </div>
                 <p className="recipe-title">{recipe.title}</p>
                 <p className="recipe-desc">{recipe.description}</p>
                 <Link className="view-btn" to={`/recipes/${recipe.recipe_id}`}>VIEW RECIPE</Link>
-                <div className="like-comment ">
-                    <BiSolidLike onClick={handleLike} className={liked ? 'liked' : ''} />
-                    <span>{likeCount}</span>
-                    <Link to={`/recipes/${recipe.recipe_id}`}>
-      <FaRegComment />
-    </Link>
+                <div className="like-comment">
+                    <div className='like'>
+                        <BiSolidLike onClick={handleLike} className={liked ? 'liked' : ''} />
+                        <span>{likeCount}</span>
+                    </div>
+                    <Link to={`/recipes/${recipe.recipe_id}`} className='comment'>
+                        <FaRegComment />
+                    </Link>
                     
                 </div>
             </div>
