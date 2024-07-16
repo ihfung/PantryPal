@@ -25,7 +25,7 @@ const removeSaveRecipe = function(user_id, recipe_id) {
 
 //get all saved recipes
 const getSavedRecipesByUserId = function(user_id) {
-  return db.query('SELECT recipes.*, users.profile_pic FROM recipes JOIN save_recipe ON save_recipe.recipe_id = recipes.recipe_id  JOIN users ON recipes.user_id = users.user_id WHERE save_recipe.user_id = $1;', [user_id])
+  return db.query('SELECT recipes.*, users.profile_pic FROM recipes JOIN save_recipe ON save_recipe.recipe_id = recipes.recipe_id  JOIN users ON recipes.user_id = users.user_id WHERE save_recipe.user_id = $1 ORDER BY save_recipe.created_at DESC;', [user_id])
     .then(data => {
       console.log(data.rows);
       return data.rows;
