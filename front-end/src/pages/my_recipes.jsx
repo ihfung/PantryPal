@@ -41,8 +41,9 @@ const MyRecipes = ({recipe, userId}) =>{
   return (
 
     <div className="content">
-     
+      
       <div className="main">
+      {/* <h1>My Recipes</h1> */}
       <div className="recipes-container">
                 {/* <RecipeCard /> */}
                 {recipes.map((recipe, index) => (

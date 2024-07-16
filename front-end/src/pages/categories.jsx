@@ -11,10 +11,12 @@ import RecipeCard from "../component/recipeCard";
 const Categories = ({ userId }) =>{
   const { categoryName } = useParams();
   const [recipes, setRecipes] = useState([]);
+  const [categoriesName, setCategoriesName] = useState();
 
 
   useEffect(() => {
     fetchCategoryData();
+   
   }, [categoryName]);
 
   const fetchCategoryData = async () => {
@@ -27,12 +29,28 @@ const Categories = ({ userId }) =>{
       console.error('Error fetching category data:', error);
     }
   };
+
+  const fetchCategoryName = async () => {
+    try {
+      const response = await fetch(`/recipes/categories/${categoryName}`);
+      const data = await response.json();
+      setCategoriesName(data);
+      console.log("name", data);
+    } catch (error) {
+      console.error('Error fetching category data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategoryName();
+  }, [categoriesName]);
+
   return (
 
     <div className="content">
-    
+      
       <div className="main">
-      {/* <h1>{categoryName.replace(/_/g, ' ')}</h1> */}
+      <h1>{categoriesName && categoriesName.map((category) => (category.category_name))}</h1>
         <div className="recipes-container">
           {recipes.map((recipe) => (
             <RecipeCard key={recipe.id} recipe={recipe} userId={userId} />
