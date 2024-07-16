@@ -45,7 +45,7 @@ return (
                 </div>
                 <p className="recipe-title">{recipe.title}</p>
                 <p className="recipe-desc">{recipe.description}</p>
-                <a className="view-btn" href="#!">VIEW RECIPE</a>
+                <Link className="view-btn" to={`/recipes/${recipe.recipe_id}`}>VIEW RECIPE</Link>
                 <div className="like-comment ">
                 <BiSolidLike />
                 <FaRegComment />

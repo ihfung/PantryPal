@@ -9,14 +9,23 @@ export default function Search({ onSearch }) {
   
     const handleSearch = () => {
       onSearch(searchTerm);
-};
+
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleSearch();
+        }
+    };
+  
     return (
         <div className="searches section">
             <div className="search-box">
                 <input type="text"
                  placeholder="Search ..."
                  value={searchTerm} 
-                 onChange={handleInputChange}  />
+                 onChange={handleInputChange}  
+                 onKeyDown={handleKeyDown}/>
                 <button className="btn" onClick={handleSearch}>
                     <FaSearch />
                 </button>
