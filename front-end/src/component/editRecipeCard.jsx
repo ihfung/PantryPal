@@ -63,12 +63,12 @@ export default function EditingRecipe(props) {
           <label>Ingredients</label>
            <textarea type="text" name="ingredients" value={form.ingredients} onChange={handleInputChange}></textarea>
         </div>
+        </div>
+        
+        </div>
         <div className="form-group">
           <label>Directions</label>
           <textarea type="text" name="directions" value={form.directions} onChange={handleInputChange}></textarea>
-        </div>
-        </div>
-        
         </div>
         <div className="form-group">
           <label>Description</label>
