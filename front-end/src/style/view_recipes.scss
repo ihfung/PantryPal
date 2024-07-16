@@ -1,4 +1,4 @@
-.recipe-form {
+.recipe-forms {
   max-width: 800px;
   margin: 40px auto;
   padding: 20px;
@@ -12,7 +12,7 @@
     color: var(--primary-color);
   }
 
-  .form-field {
+  .form-fields {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -23,11 +23,11 @@
     display: flex;
     flex-direction: column;
 
-    .form-row {
+    .form-rows {
       display: flex;
       justify-content: space-between;
       
-      .form-group {
+      .form-groups {
         flex: 3;
         margin-right: 10px;
 
@@ -42,7 +42,7 @@
       max-width: 100%;
     }
 
-    .form-group {
+    .form-groups {
       margin-bottom: 20px;
 
       label {
@@ -71,122 +71,13 @@
 
   }
 
-  .comments-section {
+
+   
+
+  .comments-sections {
     margin-top: 40px;
 
-    .form-group {
-      margin-bottom: 20px;
-
-      label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: bold;
-        color: #555;
-      }
-
-      .input-box {
-        position: relative;
-        width: 100%;
-        height: 50px;
-        margin: 30px 0;
-
-        input {
-          width: 100%;
-          height: 100%;
-          background: transparent;
-          border: 2px solid rgba(255, 255, 255, 0.2);
-          outline: none;
-          .recipe-form {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-  h1, h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: var(--primary-color);
-  }
-
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    padding-top: 25px;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-
-    .form-row {
-      display: flex;
-      justify-content: space-between;
-      
-      .form-group {
-        flex: 3;
-        margin-right: 10px;
-
-        &:last-child {
-          margin-right: 0;
-        }
-      }
-    }
-
-    img {
-      display: flex;
-      max-width: 100%;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-
-      label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: bold;
-        color: #555;
-      }
-
-      input[type="text"],
-      textarea {
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 8px;
-        font-size: 16px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-
-      textarea {
-        height: 100px;
-        resize: vertical;
-      }
-    }
-
-    button {
-      padding: 15px;
-      font-size: 18px;
-      color: #1a1919;
-      background-color: #007bff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-
-      &:hover {
-        background-color: #0056b3;
-      }
-    }
-  }
-
-  .comments-section {
-    margin-top: 40px;
-
-    .form-group {
+    .form-groups {
       margin-bottom: 20px;
 
       label {
@@ -228,11 +119,11 @@
       }
     }
 
-    .comment {
+    .comments {
       padding: 10px;
       margin-bottom: 10px;
-      background-color: #ded7d7;
-      border: 1px solid #0a0909;
+      background-color: #f9f9f9;
+      border: 1px solid #4c4646;
       border-radius: 4px;
 
       p {
@@ -241,36 +132,130 @@
     }
   }
 }
+ 
 
-          font-size: 16px;
-          color: #171515;
-          padding: 20px 45px 20px 20px;
+// .recipe-forms {
+//   max-width: 800px;
+//   margin: 40px auto;
+//   padding: 20px;
+//   background-color: #fff;
+//   border-radius: 8px;
+//   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-          &::placeholder {
-            color: #1f1e1e;
-          }
-        }
+//   h1, h2 {
+//     text-align: center;
+//     margin-bottom: 20px;
+//     color: var(--primary-color);
+//   }
 
-        .icon {
-          position: absolute;
-          right: 20px;
-          top: 50%;
-          transform: translateY(-50%);
-          font-size: 16px;
-        }
-      }
-    }
+//   .form-fields {
+//     display: flex;
+//     flex-direction: column;
+//      flex-grow: 3;
+//     padding-top: 25px;
+//   }
 
-    .comment {
-      padding: 10px;
-      margin-bottom: 10px;
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
-      // border-radius: 4px;
+//   form {
+//     display: flex;
+//     flex-direction: column;
 
-      p {
-        margin: 0;
-      }
-    }
-  }
-}
+//     .form-rows {
+//       display: flex;
+//       justify-content: space-between;
+      
+//       .form-groups {
+//         //  flex: 1;
+//         margin-right: 10px;
+
+//         &:last-child {
+//           margin-right: 0;
+//         }
+//       }
+//     }
+
+//     .form-groups {
+//       margin-bottom: 20px;
+
+//       label {
+//         display: block;
+//         margin-bottom: 8px;
+//         font-weight: bold;
+//         color: #555;
+//       }
+
+//       input[type="text"],
+//       textarea {
+//         width: 100%;
+//         padding: 12px;
+//         border: 1px solid #ccc;
+//         border-radius: 4px;
+//         font-size: 16px;
+//         box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+//         transition: border-color 0.3s;
+//       }
+
+//       textarea {
+//         height: 100px;
+//         resize: vertical;
+//       }
+//     }
+
+ 
+//   }
+
+//   .comments-sections {
+//     margin-top: 40px;
+
+//     .form-groups {
+//       margin-bottom: 20px;
+
+//       label {
+//         display: block;
+//         margin-bottom: 8px;
+//         font-weight: bold;
+//         color: #555;
+//       }
+
+//       .input-box {
+//         position: relative;
+//         width: 100%;
+//         height: 50px;
+//         margin: 30px 0;
+
+//         input {
+//           width: 100%;
+//           height: 100%;
+//           background: transparent;
+//           border: 1px solid #ccc;
+//           border-radius: 4px;
+//           font-size: 16px;
+//           padding: 12px 16px;
+//           transition: border-color 0.3s;
+//         }
+
+//         .icon {
+//           position: absolute;
+//           right: 12px;
+//           top: 50%;
+//           transform: translateY(-50%);
+//           font-size: 18px;
+//           color: #555;
+//           cursor: pointer;
+//         }
+//       }
+//     }
+
+//     .comment {
+//       padding: 12px;
+//       margin-bottom: 12px;
+//       background-color: #f9f9f9;
+//       border: 1px solid #ddd;
+//       color: #555;
+//       border-radius: 4px;
+
+//       p {
+//         margin: 0;
+//       }
+//     }
+//   }
+// }

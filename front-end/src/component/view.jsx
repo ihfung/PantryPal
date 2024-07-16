@@ -70,35 +70,35 @@ export default function View(props) {
 };
 
   return (
-    <div className="recipe-form">
+    <div className="recipe-forms">
       <h1>View Recipe</h1>
       <form onSubmit={handleSubmit}>
-        <div className="form-row">
-          <div className="form-group">
+        <div className="form-rows">
+          <div className="form-groups">
             <label>Image</label>
             <img src={props.recipe.img} alt="Recipe" />
           </div>
-          <div className="form-field">
-            <div className="form-group">
+          <div className="form-fields">
+            <div className="form-groups">
               <label>Title</label>
               <input type="text" name="title" value={form.title} onChange={handleInputChange} />
             </div>
-            <div className="form-group">
+            <div className="form-groups">
               <label>Ingredients</label>
               <textarea type="text" name="ingredients" value={form.ingredients} onChange={handleInputChange}></textarea>
             </div>
-            <div className="form-group">
+            <div className="form-groups">
               <label>Description</label>
               <textarea name="description" value={form.description} onChange={handleInputChange}></textarea>
             </div>
           </div> 
         </div>
-        <div className="form-group">
+        <div className="form-groups">
           <label>Directions</label>
           <textarea name="directions" value={form.directions} onChange={handleInputChange}></textarea>
         </div>
-        <div className="comments-section">
-          <div className="form-group">
+        <div className="comments-sections">
+          <div className="form-groups">
             <label>Add comments</label>
             <div className="input-box">
               <input type="text" name="comment" value={form.comment} onChange={handleInputChange} placeholder="Add a comment" />
@@ -108,7 +108,7 @@ export default function View(props) {
             </div>
           </div>
           {form.comments.map((comment, index) => (
-            <div key={index} className="comment">
+            <div key={index} className="comments">
               <p>{comment.comment_text}</p>
             </div>
           ))}
