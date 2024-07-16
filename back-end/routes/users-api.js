@@ -69,14 +69,7 @@ router.get("/", (req, res) => {
       if (!user) {
         return res.send({ error: "no" });
       }
-
-      res.send({
-        user: {
-          name: user.user_name,
-          email: user.email,
-          id: user.user_id,
-        },
-      });
+      res.json(user);
     })
     .catch((e) => res.send(e));
 });

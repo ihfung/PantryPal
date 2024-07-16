@@ -8,7 +8,8 @@ const NavBar = ({ show, isLoggedIn, onLogout }) => {
   const navigate = useNavigate();
   const [showSubCategories, setShowSubCategories] = useState(false);
   const [categories, setCategories] = useState([]);
-
+  const [username, setUsername] = useState([]);
+  
   const handleLogoutClick = () => {
     onLogout();
     navigate('/');
@@ -23,6 +24,7 @@ const NavBar = ({ show, isLoggedIn, onLogout }) => {
         const data = await response.json();
      //   console.log("fetch categories",data);
         setCategories(data);
+        
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
@@ -35,15 +37,35 @@ const NavBar = ({ show, isLoggedIn, onLogout }) => {
     setShowSubCategories(!showSubCategories);
   };
 
+  const [getUsername, setgetUsername] = useState();
+  const handleUserName = async () => {
+    try {
+      const response = await fetch('/users');
+      const data = await response.json();
+      setgetUsername(data);
+      console.log("username", data);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+
+  };
+
+  useEffect(() => {
+    handleUserName();
+  }, [getUsername]);
   
+
   return (
     <div className={show ? "sidenav active" : "sidenav"}>
       <img src={cooklogo} alt='logo' className="logo" />
+      
       <ul>
+        
         <li><a href="/">Home</a></li>
         {isLoggedIn ? (
           <>
-            <li><a href="#!">Profile</a></li>
+             <li><a href="#!">Profile - {getUsername && getUsername.username}</a></li>
+            {/* <li><a href="#!">Profile</a></li> */}
             <li><a href="/recipes">Recipes</a></li>
             <li><a href="/my_recipes">My Recipes</a></li>
             <li><a href="/add_recipes">Add Recipe</a></li>
