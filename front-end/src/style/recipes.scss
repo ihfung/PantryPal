@@ -15,10 +15,15 @@
   overflow: hidden;
   box-shadow: 0 5px 15px var(--shadow-color);
   background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
 
   .recipe-card-info {
     padding: 15px;
     position: relative; 
+    display: flex; 
+    flex-direction: column;
+    height: 50%;
   }
 
   .custom-image {
@@ -39,10 +44,10 @@
   }
   .save-icon {
     position: absolute;
-    top: 10px; /* Adjust top position as needed */
-    right: 10px; /* Adjust right position as needed */
-   
-    font-size: 1.4em; /* Adjust icon size */
+    top: 10px; 
+    right: 10px; 
+    font-size: 1.4em; 
+    color: #3c3737;
   }
 
   .recipe-title {
@@ -57,6 +62,7 @@
     color: var(--text-light);
     font-size: 0.9em;
     letter-spacing: 1px;
+    flex-grow: 1; 
   }
 
   .view-btn {
@@ -67,50 +73,69 @@
     margin-top: 0.75em;
     display: inline-block;
   }
+ 
   .like-comment {
     display: flex;
     align-items: center;
     // justify-content: space-between;
-    margin-top: auto;
     border-top: 1px solid #ddd;
-    cursor: pointer; 
+    cursor: pointer;
     padding-top: 13px;
     padding-bottom: 5px;
-    .liked {
-      color: red;
-      font-weight: bold;
-     }
-    svg {
-    margin-right: 4px;
-    cursor: pointer;
-    }
-    span{
-    margin-right: 18px;
+
+    .like{
+        display: flex;
+        align-items: center;
+
+        .liked{
+            color: red;
+            font-weight: bold;
+        }
+
+        svg {
+            margin-right: 4px;
+            cursor: pointer;
+            color: #4d4d4d;
+        }
+
+        span {
+            padding-left: 5px;
+            color: #666;
+        }
     }
 
-  }
+    .comment {
+        display: flex;
+        align-items: center;
+
+        svg {
+            margin-left: 8px;
+            cursor: pointer;
+            color: #4d4d4d;
+        }
+    }
 }
 
-
+}
 
 
 .search-box {
   display: flex;
   align-items: center;
-  justify-content: center; /* Center horizontally */
-  height: 50px; /* Increased height */
-  width: 50%; /* Set width as needed */
-  margin: 0 auto; /* Center horizontally */
-  padding: 0 1em; /* Padding on the sides */
+  justify-content: center; 
+  height: 50px; 
+  width: 50%; 
+  margin: 0 auto; 
+  padding: 0 1em; 
   
   input, .btn {
-    height: 100%; /* Full height */
-    box-sizing: border-box; /* Include padding and border in total width/height */
+    height: 100%; 
+    box-sizing: border-box; 
   }
   
   input {
-    flex: 1; /* Take remaining space */
-    min-width: 280px; /* Minimum width for the input */
+    flex: 1; 
+    min-width: 280px; 
     padding: 0 .5em;
     font-size: 1em;
     border-radius: 5px 0 0 5px;
@@ -119,15 +144,39 @@
   }
   
   .btn {
-    padding: 0 .75em; /* Adjusted padding for the button */
+    padding: 0 .75em; 
     border-radius: 0 5px 5px 0;
-    background-color: var(--primary-color); /* Example background color */
-    color: white; /* Example text color */
-    border: none; /* Example no border */
-    cursor: pointer; /* Example cursor style */
+    background-color: var(--primary-color); 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
   }
 }
 .liked {
-  color: red;  /* Change this to whatever color you prefer */
+  color: red; 
 }
+
+.notification {
+  top: 0;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 1em;
+  z-index: 3;
+}
+
+.saved {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
 
