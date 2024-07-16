@@ -72,7 +72,19 @@ const editUserProfile = function(user) {
     });
 };
 
-module.exports = { addUser, getUserByEmail, getUserById, getUserByUsername, editUserProfile };
+//get user profile pic
+const getUserProfilePic = function(id) {
+  return db.query(
+    'SELECT * FROM users WHERE user_id = $1;', [id])
+    .then(data => {
+      return data.rows[0];
+    }).catch((err) => {
+      console.log(err.message);
+    });
+};
+
+
+module.exports = { addUser, getUserByEmail, getUserById, getUserByUsername, editUserProfile, getUserProfilePic };
 
 
 

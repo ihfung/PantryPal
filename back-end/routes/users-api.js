@@ -112,4 +112,17 @@ router.post("/edit/:id", (req, res) => {
     .catch((err) => res.send(err));
 });
 
+
+//get profile pic
+router.get("/profile/:id", (req, res) => {
+  const userId = req.session.id;
+  userQueries
+    .getUserProfilePic(userId)
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((err) => res.send(err));
+});
+
+
 module.exports = router;
