@@ -62,9 +62,20 @@ router.post('/add_recipes', (req, res) => {
 // Retrieve categories name for nav bar from database
 router.get('/categories', async (req, res) => {
   try {
-    const result = await pool.query('SELECT category_id,category_name FROM categories');
+    const result = await pool.query('SELECT category_id,category_name FROM categories;');
 
     res.json(result.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+router.get('/categories/:id', async (req, res) => {
+  const categoryId = req.params.id;
+  try {
+    const recipes = await pool.query('SELECT category_name FROM categories WHERE category_id = $1;', [categoryId]);
+    res.json(recipes.rows);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });

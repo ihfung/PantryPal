@@ -53,6 +53,7 @@ const SavedRecipes = (props) => {
     <div className="content">
    
       <div className="main">
+      <h1>Saved</h1>
       <div className="recipes-container">
                 {/* <RecipeCard /> */}
                 {recipes.map((recipe, index) => (
