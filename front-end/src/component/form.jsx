@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import '../style/add_recipes.scss'; 
+import '../style/add_sec_recipes.scss'; 
 
 export default function Form() {
   const [recipe, setRecipe] = useState({
@@ -52,7 +52,7 @@ export default function Form() {
 
   };
   return (
-    <div className="add-recipes">
+    <div className="recipe-form">
     <h1>Add Recipes</h1>
     <form onSubmit={handleSubmit}>
       <div className="form-group">
