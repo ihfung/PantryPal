@@ -44,25 +44,6 @@ const App = () => {
     localStorage.removeItem('userId');
   };
 
-
-  const [getUsername, setgetUsername] = useState();
-  const handleUserName = async () => {
-    try {
-      const response = await fetch('/users');
-      const data = await response.json();
-      setgetUsername(data);
-      console.log("username", data);
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-    }
-
-  };
-
-  useEffect(() => {
-    handleUserName();
-  }, [getUsername]);
-  
-
   return (
     <Router>
         <header>

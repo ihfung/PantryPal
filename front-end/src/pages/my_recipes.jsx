@@ -19,12 +19,12 @@ const MyRecipes = ({recipe, userId}) =>{
   const fetchMyRecipes = async () => {
    
     try {
-      console.log("line 22", userId);
+      
       const endpoint = `/my_recipes`;
       const response = await fetch(endpoint);
       if (response.ok) {
         const data = await response.json();
-        //console.log(data);
+        
         setRecipes(data);
       } else {
         console.error('Failed to fetch recipes:', response.statusText);

@@ -35,7 +35,6 @@ const Categories = ({ userId }) =>{
       const response = await fetch(`/recipes/categories/${categoryName}`);
       const data = await response.json();
       setCategoriesName(data);
-      console.log("name", data);
     } catch (error) {
       console.error('Error fetching category data:', error);
     }

@@ -25,7 +25,7 @@ const Recipes = ({ userId }) => {
     }
   }
   useEffect(() => {
-    // console.log('UserId in Recipes in useEffect:', userId);
+    
     if (userId !== null) {
       fetchRecipes();
     }

@@ -43,7 +43,6 @@ const NavBar = ({ show, isLoggedIn, onLogout }) => {
       const response = await fetch('/users');
       const data = await response.json();
       setgetUsername(data);
-      console.log("username", data);
     } catch (error) {
       console.error('Error fetching user data:', error);
     }
