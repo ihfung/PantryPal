@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userQueries = require('../db/queries/users');
+const pool = require('../db/connection');
 
 
 //Login routes
@@ -93,29 +94,70 @@ router.get("/:id", (req, res) => {
     .catch((err) => res.send(err));
 });
 
-//edit user profile
-router.post("/edit/:id", (req, res) => {
-  const userId = req.session.id;
-  const { username, email, password, profile_pic, bio } = req.body;
-  userQueries
-    .editUserProfile({ username, email, password, profile_pic, bio, userId })
-    .then((user) => {
-      res.json(user);
-    })
-    .catch((err) => res.send(err));
+
+// Route to get user profile data
+router.get('/profile/:id', async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const result = await pool.query('SELECT username AS name, email, password, bio, profile_pic FROM users WHERE user_id = $1', [userId]);
+    if (result.rows.length > 0) {
+      res.json(result.rows[0]);
+    } else {
+      res.status(404).json({ error: 'User not found' });
+    }
+  } catch (error) {
+    console.error('Error fetching profile data:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
+
+// Route to update user profile data
+router.post('/editprofile', async (req, res) => {
+  const { name, email, bio, password, profile_pic } = req.body;
+  const userId = req.userId; 
+
+  try {
+    const result = await pool.query(
+      'UPDATE users SET name = $1, email = $2, bio = $3, password = $4, profile_pic = $5 WHERE user_id = $6 RETURNING *',
+      [name, email, bio, password, profile_pic, userId]
+    );
+    if (result.rows.length > 0) {
+      res.json(result.rows[0]);
+    } else {
+      res.status(404).json({ error: 'User not found' });
+    }
+  } catch (error) {
+    console.error('Error updating profile data:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+
+
+//edit user profile
+// router.post("/edit/:id", (req, res) => {
+//   const userId = req.session.id;
+//   const { username, email, password, profile_pic, bio } = req.body;
+//   userQueries
+//     .editUserProfile({ username, email, password, profile_pic, bio, userId })
+//     .then((user) => {
+//       res.json(user);
+//     })
+//     .catch((err) => res.send(err));
+// });
 
 
 //get profile pic
-router.get("/profile/:id", (req, res) => {
-  const userId = req.session.id;
-  userQueries
-    .getUserProfilePic(userId)
-    .then((user) => {
-      res.json(user);
-    })
-    .catch((err) => res.send(err));
-});
+// router.get("/profile/:id", (req, res) => {
+//   const userId = req.session.id;
+//   userQueries
+//     .getUserProfilePic(userId)
+//     .then((user) => {
+//       res.json(user);
+//     })
+//     .catch((err) => res.send(err));
+// });
 
 
 module.exports = router;
