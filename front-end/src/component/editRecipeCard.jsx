@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../style/edit_recipe.scss';
+import profilePlaceholder from '../Assets/background2.jpg';
 import { useNavigate } from "react-router-dom";
 
 
@@ -51,7 +52,7 @@ export default function EditingRecipe(props) {
         <div className="form-row">
           <div className="form-group">
             <br></br>
-            <img src={props.recipe.img} alt="Recipe" />
+            <img src={props.recipe.img || profilePlaceholder} alt="Recipe" />
           </div>
           <div className="form-field">
           <div className="form-group">

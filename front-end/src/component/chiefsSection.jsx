@@ -11,7 +11,6 @@ export default function ChiefsSection(){
       const response = await fetch("/users/user/profile");
       const data = await response.json();
       setChief(data);
-      console.log("Chief data:", data);
     } catch (error) {
         console.error("Error fetching chief data:", error);
     }

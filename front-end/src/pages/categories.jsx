@@ -24,7 +24,7 @@ const Categories = ({ userId }) =>{
       const response = await fetch(`/recipes/category?category=${categoryName}`);
       const data = await response.json();
       setRecipes(data);
-      console.log(data);
+      
     } catch (error) {
       console.error('Error fetching category data:', error);
     }
