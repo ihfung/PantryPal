@@ -23,6 +23,7 @@ const MyRecipes = ({recipe, userId}) =>{
       const endpoint = `/my_recipes`;
       const response = await fetch(endpoint);
       if (response.ok) {
+        
         const data = await response.json();
         
         setRecipes(data);
