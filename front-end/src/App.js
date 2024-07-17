@@ -12,6 +12,7 @@ import MyRecipes from './pages/my_recipes';
 import ViewRecipes from './pages/view_recipe';
 import Categories from './pages/categories';
 import EditRecipe from './pages/editRecipe';
+import Profile from './pages/profile';
 import { GiHamburgerMenu } from "react-icons/gi";
 
 axios.defaults.baseURL = 'http://localhost:3000';
@@ -55,6 +56,7 @@ const App = () => {
       <Routes>
         <Route path="/recipes/:id" element={<ViewRecipes userId={userId} />} />
         <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile userId={userId} />} />
         <Route path="/recipes" element={<Recipes userId={userId} />} />
         <Route path="/add_recipes" element={<AddRecipes />} />
         <Route path="/my_recipes" element={<MyRecipes userId={userId} />}/>

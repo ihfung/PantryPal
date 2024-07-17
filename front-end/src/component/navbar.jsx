@@ -63,7 +63,7 @@ const NavBar = ({ show, isLoggedIn, onLogout }) => {
         <li><a href="/">Home</a></li>
         {isLoggedIn ? (
           <>
-             <li><a href="#!">Profile - {getUsername && getUsername.username}</a></li>
+             <li><a href="/profile">Profile - {getUsername && getUsername.username}</a></li>
             {/* <li><a href="#!">Profile</a></li> */}
             <li><a href="/recipes">Recipes</a></li>
             <li><a href="/my_recipes">My Recipes</a></li>
