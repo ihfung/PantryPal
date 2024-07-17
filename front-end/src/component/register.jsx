@@ -29,7 +29,7 @@ const RegisterForm = () =>{
       const data = await response.json();
       console.log(data);
       if (response.ok) {
-        navigate('/recipes');
+        navigate('/login');
         console.log('Registration successful');
       } else {
         // Registration failed, handle the error

@@ -25,7 +25,7 @@ export default function Form() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission
-    console.log(recipe);
+    
     try {
       const response = await fetch('/recipes/add_recipes', {
         method: 'POST',
@@ -36,7 +36,7 @@ export default function Form() {
       });
 
       const data = await response.json();
-      console.log(data);
+    
       if (response.ok) {
         navigate('/recipes');
         console.log('Add recipe successful');

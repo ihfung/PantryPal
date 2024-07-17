@@ -54,7 +54,6 @@ router.post('/:id/delete', (req, res) => {
 
   userQueries.removeSaveRecipe(userId, recipeId)
     .then((saved) => {
-      console.log('Recipe removed from saved!');
       res.json({ saved });
     }).catch(error => {
       res.status(400).json({ message: error.message });
