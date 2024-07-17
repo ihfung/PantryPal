@@ -25,6 +25,14 @@
   }
 }
 
+.category
+{
+  color: var(--primary-color);
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
 .section.hero{
   .typograpy{
     padding-right: 1em;

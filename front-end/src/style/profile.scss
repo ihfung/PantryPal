@@ -10,12 +10,6 @@
   align-items: center;
   font-family: 'Arial', sans-serif;
 }
-h1 {
-  text-align: center;
-  color: var(--primary-color);
-  margin-bottom: 20px;
-  width: 100%;
-}
 
 .profile-content {
   display: flex;
@@ -23,7 +17,7 @@ h1 {
   width: 100%;
   padding: 20px;
   
-
+  
   .profile-pic {
     margin-right: 30px;
     margin-top: 30px;
@@ -35,7 +29,13 @@ h1 {
       border: 3px solid #ccc;
     }
   }
-
+  
+  h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    width: 100%;
+  }
   .profile-form {
     flex: 1;
     display: flex;

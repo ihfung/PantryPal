@@ -49,7 +49,9 @@ const Categories = ({ userId }) =>{
     <div className="content">
       
       <div className="main">
+      <div className='category'>
       <h1>{categoriesName && categoriesName.map((category) => (category.category_name))}</h1>
+      </div>
         <div className="recipes-container">
           {recipes.map((recipe) => (
             <RecipeCard key={recipe.id} recipe={recipe} userId={userId} />
