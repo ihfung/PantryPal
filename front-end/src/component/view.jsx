@@ -42,7 +42,7 @@ export default function View(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(props.userId);
+    
     try {
     const response = await fetch('/comments', {
       method: 'POST',

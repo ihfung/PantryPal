@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../style/profile.scss';
 import axios from 'axios';
-import profilePlaceholder from '../Assets/background1.jpg';
+import profilePlaceholder from '../Assets/background2.jpg';
 import { useNavigate } from 'react-router-dom';
 
 export default function ProfileForm({userId}) {

@@ -38,11 +38,11 @@ export default function Saved({ recipe, userId  }) {
 
   };
   useEffect(() => {
-    console.log('RecipeCard initialized with userId:', userId);
+    
     const fetchLikeStatus = async () => {
         try {
             const res = await axios.get(`/likes/like-status/${userId}/${recipe.recipe_id}`);
-            console.log('Like status response:', res.data);
+            
             setLiked(res.data.hasLiked);
 
         } catch (error) {
@@ -53,7 +53,7 @@ export default function Saved({ recipe, userId  }) {
     const fetchLikes = async () => {
         try {
             const res = await axios.get(`/likes/likes/${recipe.recipe_id}`);
-            console.log('Like count response:', res.data);
+            
             setLikeCount(parseInt(res.data.count, 10));
         } catch (error) {
             console.error('Error fetching like count:', error.message);

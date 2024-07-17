@@ -120,7 +120,7 @@ router.post("/profile/:id", (req, res) => {
   userQueries
     .editUserProfile({ username, email, password, profile_pic, cuisine, bio, image, userId })
     .then((user) => {
-      console.log('user:', user);
+      
       res.json(user);
     })
     .catch((err) => res.send(err));

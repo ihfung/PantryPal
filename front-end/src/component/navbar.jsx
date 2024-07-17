@@ -22,7 +22,7 @@ const NavBar = ({ show, isLoggedIn, onLogout }) => {
       try {
         const response = await fetch('/recipes/categories'); 
         const data = await response.json();
-     //   console.log("fetch categories",data);
+    
         setCategories(data);
         
       } catch (error) {
