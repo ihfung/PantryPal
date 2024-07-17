@@ -167,8 +167,7 @@ const getRecipesWithUserProfiles = function () {
   return db.query(
     `SELECT recipes.recipe_id, recipes.title, recipes.description, recipes.img, users.profile_pic as profile_pic
      FROM recipes 
-     JOIN users ON recipes.user_id = users.user_id ORDER BY RANDOM()
-            LIMIT 20;
+     JOIN users ON recipes.user_id = users.user_id ORDER BY recipes.recipe_id DESC LIMIT 20;
         ;`
   )
     .then(data => {
