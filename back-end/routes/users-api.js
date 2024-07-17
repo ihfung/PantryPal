@@ -117,5 +117,14 @@ router.get("/profile/:id", (req, res) => {
     .catch((err) => res.send(err));
 });
 
+//get all users
+router.get("/user/profile", (req, res) => {
+  userQueries
+    .getAllUsers()
+    .then((users) => {
+      res.json(users);
+    })
+    .catch((err) => res.send(err));
+});
 
 module.exports = router;
