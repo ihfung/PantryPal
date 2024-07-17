@@ -2,16 +2,19 @@ import React, { useState, useEffect } from 'react';
 import '../style/profile.scss';
 import axios from 'axios';
 import profilePlaceholder from '../Assets/background1.jpg';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProfileForm({userId}) {
   const [form, setForm] = useState({
-    name: '',
+    username: '',
     email: '',
     bio: '',
     password: '',
-    profile_pic: ''
+    profile_pic: '',
+    cuisine: ''
   });
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchUserProfile();
@@ -23,30 +26,46 @@ export default function ProfileForm({userId}) {
       if (!response.data) {
         throw new Error(`User profile not found for id ${userId}`);
       }
+     
       setForm(response.data);
       setLoading(false);
+      
     } catch (error) {
       console.error('Error fetching profile data:', error);
       setLoading(false);
     }
+    
   };
 
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
   
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
     try {
-      const response = await axios.put('/users/editprofile', form);
-      if (!response.data) {
-        throw new Error('Failed to update profile');
+      const response = await fetch(`/users/profile/${userId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+
+      });
+      
+      if(response.ok){
+        
+        alert('Profile updated successfully');
+        navigate(0);
       }
-      alert('Profile updated successfully');
     } catch (error) {
       console.error('Error updating profile:', error);
     }
+
+     
   };
 
 
@@ -61,7 +80,7 @@ export default function ProfileForm({userId}) {
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label>Name</label>
-              <input type="text" name="name" value={form.name} onChange={handleInputChange} />
+              <input type="text" name="username" value={form.username} onChange={handleInputChange} />
             </div>
             <div className="form-group">
               <label>Email</label>
@@ -72,8 +91,29 @@ export default function ProfileForm({userId}) {
               <input type="text" name="password" value={form.password} onChange={handleInputChange} />
             </div>
             <div className="form-group">
+              <label>Cuisine</label>
+              <input type="text" name="cuisine" value={form.cuisine} onChange={handleInputChange}/>
+            </div>
+            <div className="form-group">
               <label>Bio</label>
               <textarea name="bio" value={form.bio} onChange={handleInputChange}></textarea>
+            </div>
+
+            <div className="form-group">
+               <label>Image URL</label>
+                <input
+                type="text"
+                name="profile_pic"
+                value={form.profile_pic}
+                onChange={handleInputChange}
+              />
+              {form.image && (
+                <img
+                  rc={form.image}
+                  alt="Recipe"
+                  className="image-preview"
+                />
+              )}
             </div>
             <button type="submit">Update</button>
           </form>
