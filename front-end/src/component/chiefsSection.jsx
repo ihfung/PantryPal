@@ -1,12 +1,4 @@
 import ChiefCard from "./chiefCard";
-import img1 from "../Assets/img_1.jpg";
-import img2 from "../Assets/img_2.jpg";
-import img3 from "../Assets/img_3.jpg";
-import img4 from "../Assets/img_4.jpg";
-import img5 from "../Assets/img_5.jpg";
-import img6 from "../Assets/img_6.jpg";
-import img7 from "../Assets/img_7.jpg";
-import img8 from "../Assets/img_8.jpg";
 import { useState, useEffect } from "react";
 
 
