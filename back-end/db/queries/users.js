@@ -83,8 +83,17 @@ const getUserProfilePic = function(id) {
     });
 };
 
+//get all users
+const getAllUsers = function() {
+  return db.query('SELECT users.*, COUNT(recipes.recipe_id) AS recipe_count FROM users LEFT JOIN recipes ON recipes.user_id = users.user_id GROUP BY users.user_id ORDER BY recipe_count DESC LIMIT 8;')
+    .then(data => {
+      return data.rows;
+    }).catch((err) => {
+      console.log(err.message);
+    });
+};
 
-module.exports = { addUser, getUserByEmail, getUserById, getUserByUsername, editUserProfile, getUserProfilePic };
+module.exports = { addUser, getUserByEmail, getUserById, getUserByUsername, editUserProfile, getUserProfilePic, getAllUsers };
 
 
 
