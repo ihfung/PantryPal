@@ -11,58 +11,7 @@ import { useState, useEffect } from "react";
 
 
 export default function ChiefsSection(){
-  const chiefs = [
-      {
-          name: "Juan Carlos",
-          img: img1,
-          recipesCount: "10",
-          cuisine: "Mexican",
-      },
-      {
-          name: "John Doe",
-          img: img2,
-          recipesCount: "05",
-          cuisine: "Japanese",
-      },
-      {
-          name: "Erich Maria",
-          img: img3,
-          recipesCount: "13",
-          cuisine: "Italian",
-      },
-      {
-          name: "Chris Brown",
-          img: img4,
-          recipesCount: "08",
-          cuisine: "American"
-      },
-      {
-          name: "Blake Lively",
-          img: img5,
-          recipesCount: "09",
-          cuisine: "French"
-      },
-      {
-          name: "Ben Affleck",
-          img: img6,
-          recipesCount: "04",
-          cuisine: "Indian"
-      },
-       {
-          name: "Jenson Ackles",
-          img: img7,
-          recipesCount: "04",
-          cuisine: "Hawaiian"
-      },
-      {
-          name: "Patrick Park",
-          img: img8,
-          recipesCount: "04",
-          cuisine: "Korean"
-      },
-      
-  ]
-
+ 
   const [chief, setChief] = useState([]);
 
   const getChiefs = async () => {
