@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../style/view_recipes.scss';
 import { LuSend } from "react-icons/lu";
-
+import { useNavigate } from 'react-router-dom';
 
 export default function View(props) {
-  
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     title: props.recipe.title,
     ingredients: props.recipe.ingredients,
@@ -23,10 +23,12 @@ export default function View(props) {
  
   const fetchComments = async () => {
     try {
+      
       const response = await fetch(`/comments?recipeId=${props.recipe.recipe_id}`);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
+      
       const data = await response.json();
       
       setForm((prevForm) => ({ ...prevForm, comments: data }));
@@ -61,6 +63,7 @@ export default function View(props) {
     }
 
     const result = await response.json();
+    navigate(0);
     console.log('Comment added:', result);
     fetchComments();
     setForm({ ...form, comment: '' });
@@ -81,21 +84,21 @@ export default function View(props) {
           <div className="form-fields">
             <div className="form-groups">
               <label>Title</label>
-              <input type="text" name="title" value={form.title} onChange={handleInputChange} />
+              <input type="text" name="title" value={form.title} />
             </div>
             <div className="form-groups">
               <label>Ingredients</label>
-              <textarea type="text" name="ingredients" value={form.ingredients} onChange={handleInputChange}></textarea>
+              <textarea type="text" name="ingredients" value={form.ingredients}></textarea>
             </div>
             <div className="form-groups">
               <label>Description</label>
-              <textarea name="description" value={form.description} onChange={handleInputChange}></textarea>
+              <textarea name="description" value={form.description}></textarea>
             </div>
           </div> 
         </div>
         <div className="form-groups">
           <label>Directions</label>
-          <textarea name="directions" value={form.directions} onChange={handleInputChange}></textarea>
+          <textarea name="directions" value={form.directions}></textarea>
         </div>
         <div className="comments-sections">
           <div className="form-groups">
@@ -112,10 +115,6 @@ export default function View(props) {
               <p>{comment.comment_text}</p>
             </div>
           ))}
-            {/* <div className="form-group">
-            <label>Comments</label>
-            <textarea name="comments" value={form.comments.map(c => c.comment_text).join('\n')} readOnly></textarea>
-          </div> */}
         </div>
       </form>
     </div>
