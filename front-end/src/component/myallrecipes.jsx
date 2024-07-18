@@ -44,7 +44,7 @@ export default function AllMyRecipes({recipe, userId}){
                 <p className="recipe-desc">{recipe.description}</p>
                 <div className="like-comment ">
                 <FaEdit onClick={handleEditMyRecipe} recipe={recipe}/>   
-                <FaTrashAlt onClick={handleRemoveMyRecipe}/> 
+                <FaTrashAlt style={{ margin: '0px' }} onClick={handleRemoveMyRecipe}/> 
                 </div>
             </div>
         </div>
