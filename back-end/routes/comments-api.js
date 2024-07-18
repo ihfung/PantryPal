@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
   console.log('Adding comment:', comment, 'to recipeId:', recipeId, 'by ownerId:', ownerId); 
   userQueries.addComment(comment, recipeId, ownerId)
     .then(() => {
-      res.status(201).json(addComment);
+      res.status(201).json({ message: 'Comment added successfully to recipe' });
     }).catch(error => {
       console.error('Error adding comment:', error);
       res.status(400).json({ message: error.message });
