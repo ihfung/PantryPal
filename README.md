@@ -4,7 +4,7 @@ Pantry Pal is a web application built by Gokul Krishna, Ivan Leung, and Arpi Pat
 
 ## Synopsis
 
-Cookbook addresses the challenge of culinary exploration and community engagement by providing a user-friendly platform where food enthusiasts can easily discover, share, and interact with a wide variety of recipes. Whether users are seeking inspiration for a quick weeknight dinner or looking to showcase their culinary creations, Cookbook empowers them to connect, learn, and indulge in their passion for cooking. PantryPal is for anyone who loves cooking and wants to explore, share, and discover new recipes and culinary ideas.
+PantryPal addresses the challenge of culinary exploration and community engagement by providing a user-friendly platform where food enthusiasts can easily discover, share, and interact with a wide variety of recipes. Whether users are seeking inspiration for a quick weeknight dinner or looking to showcase their culinary creations, PantryPal empowers them to connect, learn, and indulge in their passion for cooking. PantryPal is for anyone who loves cooking and wants to explore, share, and discover new recipes and culinary ideas.
 
 # Downloading the project
 
