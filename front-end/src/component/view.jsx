@@ -63,7 +63,7 @@ export default function View(props) {
     }
 
     const result = await response.json();
-    navigate(0);
+    // navigate(0);
     console.log('Comment added:', result);
     fetchComments();
     setForm({ ...form, comment: '' });
