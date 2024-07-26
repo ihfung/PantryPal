@@ -10,7 +10,7 @@ PantryPal addresses the challenge of culinary exploration and community engageme
 
 Fork and clone this repo
 
-## Final Product
+## Final Products
 
 
 !["Screenshort of home1"](https://github.com/arpipatel-ap/PantryPal/blob/main/docs/home1.png)
