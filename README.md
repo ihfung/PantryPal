@@ -10,7 +10,18 @@ PantryPal addresses the challenge of culinary exploration and community engageme
 
 Fork and clone this repo
 
-# Running the project localy
+## Final Products
+
+
+!["Screenshort of home1"](https://github.com/arpipatel-ap/PantryPal/blob/main/docs/home1.png)
+!["Screenshort of home2"](https://github.com/arpipatel-ap/PantryPal/blob/main/docs/home2.png)
+!["Screenshort of home_sidebar"](https://github.com/arpipatel-ap/PantryPal/blob/main/docs/home-sidebar.png)
+!["Screenshort of  recipes1"](https://github.com/arpipatel-ap/PantryPal/blob/main/docs/recipes1.png)
+!["Screenshort of recipes2"](https://github.com/arpipatel-ap/PantryPal/blob/main/docs/recipes2.png)
+!["Screenshort of  view"](https://github.com/arpipatel-ap/PantryPal/blob/main/docs/view.png)
+!["Screenshort of profile"](https://github.com/arpipatel-ap/PantryPal/blob/main/docs/profile.png)
+
+
 
 ## The back-end server
 
