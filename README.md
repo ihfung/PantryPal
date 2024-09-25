@@ -19,6 +19,9 @@ Fork and clone this repo
 
 
 
+## Tach Stack
+PostgresSQL, React, Express, NodeJs
+
 ## The back-end server
 
 ```sh
